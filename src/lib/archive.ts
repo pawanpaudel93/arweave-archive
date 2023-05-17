@@ -9,9 +9,12 @@ import type { JWKInterface } from 'arweave/node/lib/wallet';
 import axios from 'axios';
 import { findChrome } from 'find-chrome-bin';
 import mime from 'mime-types';
+import { execFile } from 'promisify-child-process';
 import { directory } from 'tempy';
 
-import { getErrorMessage, runBrowser } from './utils';
+import { getErrorMessage } from './utils';
+
+const SINGLEFILE_EXECUTABLE = './node_modules/single-file-cli/single-file';
 
 export type ArchiveReturnType = {
   status: 'success' | 'error';
@@ -121,6 +124,17 @@ export class Archive {
     return executablePath;
   }
 
+  private async runBrowser({ browserArgs, browserExecutablePath, url, basePath, output }) {
+    const command = [
+      `--browser-executable-path=${browserExecutablePath}`,
+      `--browser-args='${browserArgs}'`,
+      url,
+      `--output=${output}`,
+      `--base-path=${basePath}`,
+    ];
+    await execFile(SINGLEFILE_EXECUTABLE, command);
+  }
+
   private async signTransaction(tx: Transaction, options?: SignatureOptions): Promise<Transaction> {
     const targetVerificationFailure = tx.quantity && +tx.quantity > 0 && tx.target;
     if (targetVerificationFailure) {
@@ -214,7 +228,7 @@ export class Archive {
       tempDirectory = directory();
 
       try {
-        await runBrowser({
+        await this.runBrowser({
           browserArgs: '["--no-sandbox", "--window-size=1920,1080", "--start-maximized"]',
           browserExecutablePath: await this.getChromeExecutablePath(),
           url,
