@@ -5,7 +5,6 @@ import path from 'path';
 import { ArweaveSigner, createData, DataItem, Signer, Transaction } from 'arbundles';
 import Arweave from 'arweave';
 import { SignatureOptions } from 'arweave/node/lib/crypto/crypto-interface';
-import { TransactionUploader } from 'arweave/node/lib/transaction-uploader';
 import type { JWKInterface } from 'arweave/node/lib/wallet';
 import axios from 'axios';
 import { findChrome } from 'find-chrome-bin';
@@ -53,6 +52,7 @@ export class Archive {
   private appVersion = '0.1.0';
   private gatewayUrl = 'https://arweave.net';
   private bundlerUrl = 'https://node2.bundlr.network';
+  private isDevelopment = false;
   private jwk: JWKInterface;
   private signer: Signer;
   private arweave: Arweave;
@@ -97,11 +97,13 @@ export class Archive {
     host = host.split(':')[0];
     protocol = protocol.replace(':', '');
     port = port ? port : protocol === 'https' ? '443' : '80';
-    this.arweave = Arweave.init({
-      host,
-      port,
-      protocol,
-    });
+    this.arweave = Arweave.init({ host, port, protocol });
+    this.isDevelopment = host === 'localhost' || host === '127.0.0.1';
+    if (this.isDevelopment) {
+      this.arweave.wallets.jwkToAddress(this.jwk).then((address) => {
+        this.arweave.api.get(`/mint/${address}/100000000000000000000`);
+      });
+    }
   }
 
   private async toHash(data: Buffer): Promise<string> {
@@ -143,18 +145,12 @@ export class Archive {
     return dataItem;
   }
 
-  private async manageUpload(tx: Transaction, data: Uint8Array): Promise<number | undefined> {
+  private async manageUpload(tx: Transaction): Promise<number | undefined> {
     if (!tx.chunks?.chunks?.length) {
       await this.arweave.transactions.post(tx);
       return undefined;
     }
-    let uploader: TransactionUploader;
-    console.log('tx: ', tx);
-    try {
-      uploader = await this.arweave.transactions.getUploader(tx);
-    } catch (error) {
-      uploader = await this.arweave.transactions.getUploader(tx.id, data);
-    }
+    const uploader = await this.arweave.transactions.getUploader(tx);
 
     while (!uploader.isComplete) {
       await uploader.uploadChunk();
@@ -163,17 +159,16 @@ export class Archive {
     return uploader.lastResponseStatus;
   }
 
-  private async dispatch(tx: Transaction, rawData: Uint8Array): Promise<DispatchReturnType> {
+  private async dispatch(tx: Transaction): Promise<DispatchReturnType> {
     let errorMessage: string;
-    const txObject = new Transaction(tx);
-    if (!txObject.quantity || txObject.quantity === '0') {
+    if (!tx.quantity || (tx.quantity === '0' && !this.isDevelopment)) {
       try {
-        const data = txObject.get('data', { decode: true, string: false });
-        const tags = txObject.tags.map((tag) => ({
+        const data = tx.get('data', { decode: true, string: false });
+        const tags = tx.tags.map((tag) => ({
           name: tag.get('name', { decode: true, string: true }),
           value: tag.get('value', { decode: true, string: true }),
         }));
-        const target = txObject.target;
+        const target = tx.target;
         const bundleTx = await this.createDataItem({ data, tags, target });
         const txUrl = this.joinUrl(this.bundlerUrl, 'tx');
         const res = await axios.post(txUrl, bundleTx.getRaw(), {
@@ -188,20 +183,18 @@ export class Archive {
           return dispatchResult;
         }
       } catch (error) {
-        console.error('error1: ', error);
         errorMessage = getErrorMessage(error);
       }
     }
     try {
-      await this.signTransaction(txObject);
-      await this.manageUpload(txObject, rawData);
+      await this.signTransaction(tx);
+      await this.manageUpload(tx);
       const dispatchResult: DispatchReturnType = {
-        id: txObject.id,
+        id: tx.id,
         type: 'BASE',
       };
       return dispatchResult;
     } catch (error) {
-      console.error('error2: ', error);
       errorMessage = getErrorMessage(error);
     }
     throw Error(errorMessage);
@@ -267,7 +260,7 @@ export class Archive {
             transaction.addTag(isIndexFile ? 'page:url' : 'screenshot:url', metadata.url);
             transaction.addTag(isIndexFile ? 'page:timestamp' : 'screenshot:timestamp', String(timestamp));
             transaction.addTag('File-Hash', hash);
-            const response = await this.dispatch(transaction, data);
+            const response = await this.dispatch(transaction);
             manifest.paths[isIndexFile ? 'index.html' : 'screenshot'] = {
               id: response.id,
             };
@@ -283,7 +276,7 @@ export class Archive {
       manifestTransaction.addTag('Type', 'archive');
       manifestTransaction.addTag('Url', metadata.url);
       manifestTransaction.addTag('Timestamp', String(timestamp));
-      const response = await this.dispatch(manifestTransaction, data);
+      const response = await this.dispatch(manifestTransaction);
 
       await fsPromises.rm(tempDirectory, { recursive: true, force: true });
       return {

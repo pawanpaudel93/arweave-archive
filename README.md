@@ -16,7 +16,16 @@ yarn add arweave-archive
 
 ## Usage
 
-```ts
+```javascript
+import { Archive, ArchiveReturnType } from 'arweave-archive';
+
+async function main() => {
+  const archive = new Archive("wallet_jwk.json")
+  const output: ArchiveReturnType = await archive.archiveUrl('https://github.com/pawanpaudel93');
+  return output
+});
+
+main().then((output) => console.log(output))
 
 ```
 
