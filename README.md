@@ -4,26 +4,26 @@ A package to archive webpage & it's screenshot to [Arweave](https://arweave.org/
 
 ## Installation
 
-```
+```sh
 npm install arweave-archive
 ```
 
 OR
 
-```
+```sh
 yarn add arweave-archive
 ```
 
 ## Usage
 
 ```javascript
-import { Archive, ArchiveReturnType } from 'arweave-archive';
+import { Archive } from 'arweave-archive';
 
 async function main() => {
   const archive = new Archive("wallet_jwk.json")
-  const output: ArchiveReturnType = await archive.archiveUrl('https://github.com/pawanpaudel93');
+  const output = await archive.archiveUrl('https://github.com/pawanpaudel93');
   return output
-});
+}
 
 main().then((output) => console.log(output))
 
