@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.2...v0.0.3) (2023-05-19)
+
+
+### Bug Fixes
+
+* Add latest userAgent & make appName & appVersion static ([12f2cb7](https://github.com/pawanpaudel93/arweave-archive/commit/12f2cb7f09c930e7eaad9f5d7082bf9b965492e6))
+
 ### [0.0.2](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.1...v0.0.2) (2023-05-17)
 
 
