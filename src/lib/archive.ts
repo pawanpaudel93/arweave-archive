@@ -12,9 +12,8 @@ import mime from 'mime-types';
 import { execFile } from 'promisify-child-process';
 import { directory } from 'tempy';
 
+import { runBrowser } from './single-file';
 import { getErrorMessage } from './utils';
-
-const SINGLEFILE_EXECUTABLE = './node_modules/single-file-cli/single-file';
 
 export type ArchiveReturnType = {
   status: 'success' | 'error';
@@ -133,7 +132,11 @@ export class Archive {
       `--base-path=${basePath}`,
       `--user-agent=${userAgent}`,
     ];
-    await execFile(SINGLEFILE_EXECUTABLE, command);
+    try {
+      await runBrowser({ browserArgs, browserExecutablePath, url, basePath, output, userAgent });
+    } catch (error) {
+      await execFile('./node_modules/single-file-cli/single-file', command);
+    }
   }
 
   private async signTransaction(tx: Transaction, options?: SignatureOptions): Promise<Transaction> {
