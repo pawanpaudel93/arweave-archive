@@ -51,8 +51,8 @@ type Manifest = {
 
 export class Archive {
   private manifestContentType = 'application/x.arweave-manifest+json';
-  private appName = 'Arweave-Archive';
-  private appVersion = '0.1.0';
+  static appName = 'Arweave-Archive';
+  static appVersion = '0.1.0';
   private gatewayUrl = 'https://arweave.net';
   private bundlerUrl = 'https://node2.bundlr.network';
   private isDevelopment = false;
@@ -124,13 +124,14 @@ export class Archive {
     return executablePath;
   }
 
-  private async runBrowser({ browserArgs, browserExecutablePath, url, basePath, output }) {
+  private async runBrowser({ browserArgs, browserExecutablePath, url, basePath, output, userAgent }) {
     const command = [
       `--browser-executable-path=${browserExecutablePath}`,
       `--browser-args='${browserArgs}'`,
       url,
       `--output=${output}`,
       `--base-path=${basePath}`,
+      `--user-agent=${userAgent}`,
     ];
     await execFile(SINGLEFILE_EXECUTABLE, command);
   }
@@ -234,6 +235,8 @@ export class Archive {
           url,
           basePath: tempDirectory,
           output: path.resolve(tempDirectory, 'index.html'),
+          userAgent:
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36',
         });
       } catch (error) {
         await fsPromises.rm(tempDirectory, { recursive: true, force: true });
@@ -267,8 +270,8 @@ export class Archive {
             const data = new Uint8Array(bufferData);
             const transaction = await this.arweave.createTransaction({ data }, this.jwk);
             const mimeType = mime.lookup(filePath) || 'application/octet-stream';
-            transaction.addTag('App-Name', this.appName);
-            transaction.addTag('App-Version', this.appVersion);
+            transaction.addTag('App-Name', Archive.appName);
+            transaction.addTag('App-Version', Archive.appVersion);
             transaction.addTag('Content-Type', mimeType);
             transaction.addTag(isIndexFile ? 'page:title' : 'screenshot:title', metadata.title);
             transaction.addTag(isIndexFile ? 'page:url' : 'screenshot:url', metadata.url);
@@ -283,8 +286,8 @@ export class Archive {
 
       const data = new TextEncoder().encode(JSON.stringify(manifest));
       const manifestTransaction = await this.arweave.createTransaction({ data }, this.jwk);
-      manifestTransaction.addTag('App-Name', this.appName);
-      manifestTransaction.addTag('App-Version', this.appVersion);
+      manifestTransaction.addTag('App-Name', Archive.appName);
+      manifestTransaction.addTag('App-Version', Archive.appVersion);
       manifestTransaction.addTag('Content-Type', this.manifestContentType);
       manifestTransaction.addTag('Title', metadata.title);
       manifestTransaction.addTag('Type', 'archive');
