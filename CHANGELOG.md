@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.3...v0.0.4) (2023-05-19)
+
+
+### Bug Fixes
+
+* run browser error handeling ([cecaa41](https://github.com/pawanpaudel93/arweave-archive/commit/cecaa410cb775435f003764f15bae2615e97dafe))
+
 ### [0.0.3](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.2...v0.0.3) (2023-05-19)
 
 

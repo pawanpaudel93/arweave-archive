@@ -1,6 +1,6 @@
 {
   "name": "arweave-archive",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A node package to archive webpage & it's screenshot to Arweave",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
