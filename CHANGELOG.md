@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.4...v0.0.5) (2023-05-20)
+
+
+### Features
+
+* fetch all and latest archive/s ([b7c59c5](https://github.com/pawanpaudel93/arweave-archive/commit/b7c59c5182902b5ecf230bf8806f8a731dd60e1d))
+
 ### [0.0.4](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.3...v0.0.4) (2023-05-19)
 
 
