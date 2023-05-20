@@ -48,12 +48,22 @@ type Manifest = {
   paths: Record<string, ManifestPath>;
 };
 
+type ArchiveType = {
+  id: string;
+  url: string;
+  title: string;
+  webpage: string;
+  screenshot: string;
+  timestamp: number;
+};
+
 export class Archive {
-  private manifestContentType = 'application/x.arweave-manifest+json';
-  static appName = 'Arweave-Archive';
-  static appVersion = '0.1.0';
+  private readonly manifestContentType = 'application/x.arweave-manifest+json';
+  static readonly appName = 'Arweave-Archive';
+  static readonly appVersion = '0.1.0';
   private gatewayUrl = 'https://arweave.net';
   private bundlerUrl = 'https://node2.bundlr.network';
+  private walletAddress: string;
   private isDevelopment = false;
   private jwk: JWKInterface;
   private signer: Signer;
@@ -137,6 +147,12 @@ export class Archive {
     } catch (error) {
       await execFile('./node_modules/single-file-cli/single-file', command);
     }
+  }
+
+  private async getWalletAddress() {
+    if (this.walletAddress) return this.walletAddress;
+    this.walletAddress = await this.arweave.wallets.jwkToAddress(this.jwk);
+    return this.walletAddress;
   }
 
   private async signTransaction(tx: Transaction, options?: SignatureOptions): Promise<Transaction> {
@@ -318,5 +334,96 @@ export class Archive {
         timestamp: 0,
       };
     }
+  };
+
+  private query = async (walletAddress: string, first = 100, cursor?: string) => {
+    const query = {
+      query: `
+            query {
+                transactions(
+                    first: ${first},
+                    ${cursor ? `after: "${cursor}",` : ''}
+                    owners: ["${walletAddress}"],
+                    tags: [
+                        { name: "App-Name", values: ["${Archive.appName}"] }
+                        { name: "Content-Type", values: ["${this.manifestContentType}"] }
+                        { name: "App-Version", values: ["${Archive.appVersion}"]}
+                    ]
+                ) {
+                    pageInfo { 
+                        hasNextPage
+                    }
+                    edges {
+                        cursor
+                        node {
+                            id
+                            tags {
+                                name
+                                value
+                            }
+                        }
+                    }
+                }
+            }
+        `,
+    };
+    const {
+      data: {
+        data: {
+          transactions: {
+            edges: archivedTransactions,
+            pageInfo: { hasNextPage },
+          },
+        },
+      },
+    } = await this.arweave.api.post('graphql', query);
+    cursor = archivedTransactions[archivedTransactions.length - 1]?.cursor;
+    return { archivedTransactions, cursor, hasNextPage };
+  };
+
+  public getAllArchives = async (walletAddress?: string): Promise<ArchiveType[]> => {
+    const address = walletAddress ?? (await this.getWalletAddress());
+    const archives: ArchiveType[] = [];
+    let hasNextPage = true;
+    let cursor: string;
+    while (hasNextPage) {
+      const result = await this.query(address, 100, cursor);
+      hasNextPage = result.hasNextPage;
+      cursor = result.cursor;
+      if (result.archivedTransactions.length > 0) {
+        archives.push(
+          ...result.archivedTransactions.map((transaction: { node: { tags: Tag[]; id: string } }) => {
+            const { id, tags } = transaction.node;
+            return {
+              id,
+              url: tags[5]?.value ?? '',
+              title: tags[3]?.value ?? '',
+              webpage: this.joinUrl(this.gatewayUrl, id),
+              screenshot: this.joinUrl(this.gatewayUrl, `${id}/screenshot`),
+              timestamp: parseInt(tags[6]?.value ?? '0'),
+            };
+          })
+        );
+      }
+    }
+    return archives;
+  };
+
+  public getLatestArchive = async (walletAddress?: string): Promise<ArchiveType | null> => {
+    const address = walletAddress ?? (await this.getWalletAddress());
+
+    const { archivedTransactions } = await this.query(address, 1);
+    if (archivedTransactions.length > 0) {
+      const { id, tags } = archivedTransactions[0].node;
+      return {
+        id,
+        url: tags[5]?.value ?? '',
+        title: tags[3]?.value ?? '',
+        webpage: this.joinUrl(this.gatewayUrl, id),
+        screenshot: this.joinUrl(this.gatewayUrl, `${id}/screenshot`),
+        timestamp: parseInt(tags[6]?.value ?? '0'),
+      };
+    }
+    return null;
   };
 }

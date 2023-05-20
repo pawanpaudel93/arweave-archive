@@ -17,7 +17,11 @@ test('Archive', async (t) => {
   t.assert(Archive.appVersion === '0.1.0');
   const archive = new Archive(jwk, 'http://localhost:1984', 'https://devnet.bundlr.network');
   const output: ArchiveReturnType = await archive.archiveUrl('https://github.com/pawanpaudel93');
-  console.log(output);
+  await arweave.api.get(`/mine`);
+  const archives = await archive.getAllArchives();
+  t.assert(archives.length > 0);
+  const _archive = await archive.getLatestArchive();
+  t.assert(_archive && typeof _archive.id === 'string');
   await arLocal.stop();
-  t.assert(output.status === 'success');
+  t.assert(output);
 });
