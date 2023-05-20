@@ -20,8 +20,8 @@ test('Archive', async (t) => {
   await arweave.api.get(`/mine`);
   const archives = await archive.getAllArchives();
   t.assert(archives.length > 0);
-  const _archive = await archive.getLatestArchive();
-  t.assert(_archive && typeof _archive.id === 'string');
+  const latestArchive = await archive.getLatestArchive();
+  t.assert(latestArchive && typeof latestArchive.id === 'string');
   await arLocal.stop();
   t.assert(output);
 });

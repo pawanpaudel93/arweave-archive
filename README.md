@@ -16,17 +16,54 @@ yarn add arweave-archive
 
 ## Usage
 
+### Archive a page
+
 ```javascript
 import { Archive } from 'arweave-archive';
 
 async function main() => {
   const archive = new Archive("wallet_jwk.json")
   const output = await archive.archiveUrl('https://github.com/pawanpaudel93');
-  return output
+  console.log(output)
 }
 
-main().then((output) => console.log(output))
+main()
+```
 
+### Get all archived results
+
+```javascript
+import { Archive } from 'arweave-archive';
+
+async function main() => {
+  const archive = new Archive("wallet_jwk.json")
+  // Get all archives of the loaded Arweave wallet JWK
+  const allArchives = await archive.getAllArchives();
+  console.log(allArchives)
+  // Get all archives of a wallet address
+  const allAddressArchives = await archive.getAllArchives("some-wallet-address");
+  console.log(allAddressArchives)
+}
+
+main()
+```
+
+### Get latest archived result
+
+```javascript
+import { Archive } from 'arweave-archive';
+
+async function main() => {
+  const archive = new Archive("wallet_jwk.json")
+  // Get latest archive of the loaded Arweave wallet JWK
+  const latestArchive = await archive.getLatestArchive();
+  console.log(latestArchive)
+  // Get latest archive of a wallet address
+  const latestAddressArchive = await archive.getLatestArchive("some-wallet-address");
+  console.log(latestAddressArchive)
+}
+
+main()
 ```
 
 ## Author
