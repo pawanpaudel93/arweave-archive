@@ -136,17 +136,24 @@ export class Archive {
   }
 
   private async runBrowser({ browserArgs, browserExecutablePath, url, basePath, output, userAgent }) {
-    const command = [
-      `--browser-executable-path=${browserExecutablePath}`,
-      `--browser-args='${browserArgs}'`,
-      url,
-      `--output=${output}`,
-      `--base-path=${basePath}`,
-      `--user-agent=${userAgent}`,
-    ];
     try {
-      await runBrowser({ browserArgs, browserExecutablePath, url, basePath, output, userAgent });
+      await runBrowser({
+        browserArgs,
+        browserExecutablePath,
+        url,
+        basePath,
+        output,
+        userAgent,
+      });
     } catch (error) {
+      const command = [
+        `--browser-executable-path=${browserExecutablePath}`,
+        `--browser-args='${browserArgs}'`,
+        url,
+        `--output=${output}`,
+        `--base-path=${basePath}`,
+        `--user-agent=${userAgent}`,
+      ];
       await execFile('./node_modules/single-file-cli/single-file', command);
     }
   }
