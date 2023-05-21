@@ -57,6 +57,8 @@ type ArchiveType = {
   timestamp: number;
 };
 
+type ArchiveOptions = { gatewayUrl?: string; bundlerUrl?: string };
+
 export class Archive {
   private readonly manifestContentType = 'application/x.arweave-manifest+json';
   static readonly appName = 'Arweave-Archive';
@@ -69,9 +71,9 @@ export class Archive {
   private signer: Signer;
   private arweave: Arweave;
 
-  constructor(jwk: JWKInterface | string, gatewayUrl?: string, bundlerUrl?: string) {
-    this.gatewayUrl = this.processUrl(gatewayUrl ?? this.gatewayUrl);
-    this.bundlerUrl = this.processUrl(bundlerUrl ?? this.bundlerUrl);
+  constructor(jwk: JWKInterface | string, options?: ArchiveOptions) {
+    this.gatewayUrl = this.processUrl(options?.gatewayUrl ?? this.gatewayUrl);
+    this.bundlerUrl = this.processUrl(options?.bundlerUrl ?? this.bundlerUrl);
     this.processJWK(jwk);
     this.initArweave();
   }

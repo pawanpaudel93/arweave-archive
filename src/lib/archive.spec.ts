@@ -15,7 +15,10 @@ test('Archive', async (t) => {
   const jwk = await arweave.wallets.generate();
   t.assert(Archive.appName === 'Arweave-Archive');
   t.assert(Archive.appVersion === '0.1.0');
-  const archive = new Archive(jwk, 'http://localhost:1984', 'https://devnet.bundlr.network');
+  const archive = new Archive(jwk, {
+    gatewayUrl: 'http://localhost:1984',
+    bundlerUrl: 'https://devnet.bundlr.network',
+  });
   const output: ArchiveReturnType = await archive.archiveUrl('https://github.com/pawanpaudel93');
   await arweave.api.get(`/mine`);
   const archives = await archive.getAllArchives();
