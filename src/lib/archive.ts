@@ -7,12 +7,9 @@ import Arweave from 'arweave';
 import { SignatureOptions } from 'arweave/node/lib/crypto/crypto-interface';
 import type { JWKInterface } from 'arweave/node/lib/wallet';
 import axios from 'axios';
-import { findChrome } from 'find-chrome-bin';
 import mime from 'mime-types';
-import { execFile } from 'promisify-child-process';
-import { directory } from 'tempy';
+import { HtmlScreenshotSaver, SaveReturnType } from 'save-html-screenshot';
 
-import { runBrowser } from './single-file';
 import { getErrorMessage } from './utils';
 
 export type ArchiveReturnType = {
@@ -57,7 +54,24 @@ type ArchiveType = {
   timestamp: number;
 };
 
-type ArchiveOptions = { gatewayUrl?: string; bundlerUrl?: string };
+interface BrowserlessOptions {
+  apiKey: string;
+  proxyServer?: string;
+  blockAds?: boolean;
+  stealth?: boolean;
+  userDataDir?: string;
+  keepalive?: number;
+  windowSize?: string;
+  ignoreDefaultArgs?: string;
+  headless?: boolean;
+  userAgent?: string;
+}
+
+type ArchiveOptions = {
+  gatewayUrl?: string;
+  bundlerUrl?: string;
+  browserlessOptions?: BrowserlessOptions;
+};
 
 export class Archive {
   private readonly manifestContentType = 'application/x.arweave-manifest+json';
@@ -70,10 +84,12 @@ export class Archive {
   private jwk: JWKInterface;
   private signer: Signer;
   private arweave: Arweave;
+  private browserlessOptions?: BrowserlessOptions;
 
   constructor(jwk: JWKInterface | string, options?: ArchiveOptions) {
     this.gatewayUrl = this.processUrl(options?.gatewayUrl ?? this.gatewayUrl);
     this.bundlerUrl = this.processUrl(options?.bundlerUrl ?? this.bundlerUrl);
+    this.browserlessOptions = options.browserlessOptions;
     this.processJWK(jwk);
     this.initArweave();
   }
@@ -128,34 +144,6 @@ export class Archive {
     const hashHex = hashBuffer.toString('hex');
 
     return hashHex;
-  }
-
-  private async getChromeExecutablePath() {
-    const { executablePath } = await findChrome({});
-    return executablePath;
-  }
-
-  private async runBrowser({ browserArgs, browserExecutablePath, url, basePath, output, userAgent }) {
-    try {
-      await runBrowser({
-        browserArgs,
-        browserExecutablePath,
-        url,
-        basePath,
-        output,
-        userAgent,
-      });
-    } catch (error) {
-      const command = [
-        `--browser-executable-path=${browserExecutablePath}`,
-        `--browser-args='${browserArgs}'`,
-        url,
-        `--output=${output}`,
-        `--base-path=${basePath}`,
-        `--user-agent=${userAgent}`,
-      ];
-      await execFile('./node_modules/single-file-cli/single-file', command);
-    }
   }
 
   private async getWalletAddress() {
@@ -245,6 +233,7 @@ export class Archive {
 
   public archiveUrl = async (url: string): Promise<ArchiveReturnType> => {
     let tempDirectory: string;
+    let result: SaveReturnType;
     try {
       const manifest: Manifest = {
         manifest: 'arweave/paths',
@@ -254,36 +243,18 @@ export class Archive {
         },
         paths: {},
       };
-      tempDirectory = directory();
 
-      try {
-        await this.runBrowser({
-          browserArgs: '["--no-sandbox", "--window-size=1920,1080", "--start-maximized"]',
-          browserExecutablePath: await this.getChromeExecutablePath(),
-          url,
-          basePath: tempDirectory,
-          output: path.resolve(tempDirectory, 'index.html'),
-          userAgent:
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36',
-        });
-      } catch (error) {
-        await fsPromises.rm(tempDirectory, { recursive: true, force: true });
-        return {
-          status: 'error',
-          message: error.toString(),
-          txID: '',
-          title: '',
-          timestamp: 0,
-        };
+      const saver = new HtmlScreenshotSaver(this.browserlessOptions);
+      result = await saver.save(url);
+      if (result.status === 'error') {
+        throw Error(result.message);
       }
+
+      tempDirectory = result.webpage.replace('index.html', '');
 
       // Get a list of all files in the directory
       const files = await fsPromises.readdir(tempDirectory);
 
-      const metadata: {
-        title: string;
-        url: string;
-      } = JSON.parse((await this.readFileAsBuffer(path.join(tempDirectory, 'metadata.json'))).toString());
       const timestamp = Math.floor(Date.now() / 1000);
 
       // Loop through all files and read them as Uint8Array
@@ -301,8 +272,8 @@ export class Archive {
             transaction.addTag('App-Name', Archive.appName);
             transaction.addTag('App-Version', Archive.appVersion);
             transaction.addTag('Content-Type', mimeType);
-            transaction.addTag(isIndexFile ? 'page:title' : 'screenshot:title', metadata.title);
-            transaction.addTag(isIndexFile ? 'page:url' : 'screenshot:url', metadata.url);
+            transaction.addTag(isIndexFile ? 'page:title' : 'screenshot:title', result.title);
+            transaction.addTag(isIndexFile ? 'page:url' : 'screenshot:url', url);
             transaction.addTag(isIndexFile ? 'page:timestamp' : 'screenshot:timestamp', String(timestamp));
             transaction.addTag('File-Hash', hash);
             const response = await this.dispatch(transaction);
@@ -317,9 +288,9 @@ export class Archive {
       manifestTransaction.addTag('App-Name', Archive.appName);
       manifestTransaction.addTag('App-Version', Archive.appVersion);
       manifestTransaction.addTag('Content-Type', this.manifestContentType);
-      manifestTransaction.addTag('Title', metadata.title);
+      manifestTransaction.addTag('Title', result.title);
       manifestTransaction.addTag('Type', 'archive');
-      manifestTransaction.addTag('Url', metadata.url);
+      manifestTransaction.addTag('Url', url);
       manifestTransaction.addTag('Timestamp', String(timestamp));
       const response = await this.dispatch(manifestTransaction);
 
@@ -328,7 +299,7 @@ export class Archive {
         status: 'success',
         message: `Uploaded to Arweave!`,
         txID: response.id,
-        title: metadata.title,
+        title: result.title,
         timestamp,
       };
     } catch (error) {
