@@ -1,1 +1,1 @@
-export { Archive, ArchiveReturnType } from './lib/archive';
+export { Archive, type ArchiveReturnType } from './lib/archive'
