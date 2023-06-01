@@ -64,65 +64,111 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 align="center">arweave-archive</h1>
-				<p>A package to archive webpage &amp; it&#39;s screenshot to <a href="https://arweave.org/">Arweave</a></p>
+				<a href="#arweave-archive" id="arweave-archive" style="color: inherit; text-decoration: none;">
+					<h1>arweave-archive</h1>
+				</a>
+				<p>arweave-archive is a node package that allows you to archive webpage and screenshot of the desired url on the <a href="https://arweave.org">Arweave</a> blockchain. It provides a convenient way to store web content permanently and securely.</p>
+				<p><a href="https://www.npmjs.com/package/arweave-archive"><img src="https://img.shields.io/npm/v/arweave-archive?color=green&label=npm-package" alt="NPM version"></a></p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
+				<p>Using npm,</p>
 				<pre><code class="language-sh">npm install arweave-archive
 </code></pre>
-				<p>OR</p>
+				<p>Using yarn,</p>
 				<pre><code class="language-sh">yarn add arweave-archive
+</code></pre>
+				<p>Using pnpm,</p>
+				<pre><code class="language-sh">pnpm add arweave-archive
 </code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<a href="#archive-a-page" id="archive-a-page" style="color: inherit; text-decoration: none;">
-					<h3>Archive a page</h3>
-				</a>
-				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { Archive } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;arweave-archive&#x27;</span>;
+				<p>To use the Arweave Archive package, import it and create an instance of the <code>Archive</code> class. You need to provide a JSON Web Key (JWK) or a path to a JWK file, which will be used to sign transactions. Optionally, you can also provide the gateway and bundler URLs and browserless options. If browserless options is not provided, locally installed Chrome browser is used to capture the webpage and screenshot of the provided url using puppeteer.</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Archive } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;arweave-archive&#x27;</span>
 
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) =&gt; </span>{
-  <span class="hljs-keyword">const</span> archive = <span class="hljs-keyword">new</span> Archive(<span class="hljs-string">&quot;wallet_jwk.json&quot;</span>)
-  <span class="hljs-keyword">const</span> output = <span class="hljs-keyword">await</span> archive.archiveUrl(<span class="hljs-string">&#x27;https://github.com/pawanpaudel93&#x27;</span>);
-  <span class="hljs-built_in">console</span>.log(output)
+<span class="hljs-keyword">const</span> jwk = <span class="hljs-string">&#x27;&lt;your-jwk-file-path-or-data&gt;&#x27;</span>
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">gatewayUrl</span>: <span class="hljs-string">&#x27;https://arweave.net&#x27;</span>,
+  <span class="hljs-attr">bundlerUrl</span>: <span class="hljs-string">&#x27;https://node2.bundlr.network&#x27;</span>,
 }
 
-main()
+<span class="hljs-keyword">const</span> archive = <span class="hljs-keyword">new</span> Archive(jwk, options)
 </code></pre>
-				<a href="#get-all-archived-results" id="get-all-archived-results" style="color: inherit; text-decoration: none;">
-					<h3>Get all archived results</h3>
+				<a href="#configuration" id="configuration" style="color: inherit; text-decoration: none;">
+					<h3>Configuration</h3>
 				</a>
-				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { Archive } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;arweave-archive&#x27;</span>;
-
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) =&gt; </span>{
-  <span class="hljs-keyword">const</span> archive = <span class="hljs-keyword">new</span> Archive(<span class="hljs-string">&quot;wallet_jwk.json&quot;</span>)
-  <span class="hljs-comment">// Get all archives of the loaded Arweave wallet JWK</span>
-  <span class="hljs-keyword">const</span> allArchives = <span class="hljs-keyword">await</span> archive.getAllArchives();
-  <span class="hljs-built_in">console</span>.log(allArchives)
-  <span class="hljs-comment">// Get all archives of a wallet address</span>
-  <span class="hljs-keyword">const</span> allAddressArchives = <span class="hljs-keyword">await</span> archive.getAllArchives(<span class="hljs-string">&quot;some-wallet-address&quot;</span>);
-  <span class="hljs-built_in">console</span>.log(allAddressArchives)
+				<p>The <code>Archive</code> class allows you to configure the following options:</p>
+				<ul>
+					<li><p><code>gatewayUrl</code> (optional): The URL of the Arweave gateway to use for uploading and accessing archived webpages. (default: &#39;<a href="https://arweave.net">https://arweave.net</a>&#39;)</p>
+					</li>
+					<li><p><code>bundlerUrl</code> (optional): The URL of the Arweave bundler to use for bundling and uploading archives. (default: &#39;<a href="https://node2.bundlr.network">https://node2.bundlr.network</a>&#39;)</p>
+					</li>
+					<li><p><code>browserlessOptions</code> (optional): The browserlessOptions object allows you to configure options related to <a href="https://www.browserless.io/docs/chrome-flags">browserless.io</a>. Here are the available options:</p>
+						<ul>
+							<li><code>apiKey</code> (optional): Your API key for using a browserless service.</li>
+							<li><code>proxyServer</code> (optional): The URL of the proxy server to use.</li>
+							<li><code>blockAds</code> (optional): A boolean indicating whether to block ads on the webpage.</li>
+							<li><code>stealth</code> (optional): A boolean indicating whether to enable stealth mode for the browser.</li>
+							<li><code>userDataDir</code> (optional): The directory where user data for the browser will be stored.</li>
+							<li><code>keepalive</code> (optional): The maximum time to keep the browser process alive, in milliseconds.</li>
+							<li><code>windowSize</code> (optional): The size of the browser window in pixels, specified as a string in the format &quot;width,height&quot;.</li>
+							<li><code>ignoreDefaultArgs</code> (optional): Additional arguments to pass to the browser process.</li>
+							<li><code>headless</code> (optional): A boolean indicating whether to run the browser in headless mode. Default is true.</li>
+							<li><code>userAgent</code> (optional): The user agent string to use for the browser.</li>
+							<li><code>timeout</code> (optional): session timer.</li>
+						</ul>
+					</li>
+				</ul>
+				<p>Here&#39;s an example of how you can set the browserlessOptions:</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">browserlessOptions</span>: {
+    <span class="hljs-attr">apiKey</span>: <span class="hljs-string">&#x27;your-api-key&#x27;</span>,
+    <span class="hljs-attr">proxyServer</span>: <span class="hljs-string">&#x27;your-proxy-server&#x27;</span>,
+    <span class="hljs-attr">blockAds</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">stealth</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">userDataDir</span>: <span class="hljs-string">&#x27;your-user-data-dir&#x27;</span>,
+    <span class="hljs-attr">keepalive</span>: <span class="hljs-number">60000</span>,
+    <span class="hljs-attr">windowSize</span>: <span class="hljs-string">&#x27;1280,720&#x27;</span>,
+    <span class="hljs-attr">ignoreDefaultArgs</span>: <span class="hljs-string">&#x27;--disable-extensions&#x27;</span>,
+    <span class="hljs-attr">headless</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">userAgent</span>: <span class="hljs-string">&#x27;your-user-agent&#x27;</span>,
+    <span class="hljs-attr">timeout</span>: <span class="hljs-number">60000</span>
+  }
 }
 
-main()
+<span class="hljs-keyword">const</span> archive = <span class="hljs-keyword">new</span> Archive(jwk, options)
 </code></pre>
-				<a href="#get-latest-archived-result" id="get-latest-archived-result" style="color: inherit; text-decoration: none;">
-					<h3>Get latest archived result</h3>
+				<p>Please note that the browserlessOptions is optional, and you can omit them if you don&#39;t need to use it for capturing webpage and screenshots of the provided url.</p>
+				<a href="#archiving-a-url" id="archiving-a-url" style="color: inherit; text-decoration: none;">
+					<h3>Archiving a URL</h3>
 				</a>
-				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { Archive } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;arweave-archive&#x27;</span>;
-
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) =&gt; </span>{
-  <span class="hljs-keyword">const</span> archive = <span class="hljs-keyword">new</span> Archive(<span class="hljs-string">&quot;wallet_jwk.json&quot;</span>)
-  <span class="hljs-comment">// Get latest archive of the loaded Arweave wallet JWK</span>
-  <span class="hljs-keyword">const</span> latestArchive = <span class="hljs-keyword">await</span> archive.getLatestArchive();
-  <span class="hljs-built_in">console</span>.log(latestArchive)
-  <span class="hljs-comment">// Get latest archive of a wallet address</span>
-  <span class="hljs-keyword">const</span> latestAddressArchive = <span class="hljs-keyword">await</span> archive.getLatestArchive(<span class="hljs-string">&quot;some-wallet-address&quot;</span>);
-  <span class="hljs-built_in">console</span>.log(latestAddressArchive)
-}
-
-main()
+				<p>You can archive a webpage by providing its URL to the <code>archiveUrl</code> method. The method returns a promise that resolves to an <code>ArchiveReturnType</code> object, containing the status of the archive process, a message, the transaction ID, the title of the webpage, and the timestamp.</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> output = <span class="hljs-keyword">await</span> archive.archiveUrl(<span class="hljs-string">&#x27;https://github.com/pawanpaudel93&#x27;</span>)
+<span class="hljs-built_in">console</span>.log(output)
+</code></pre>
+				<a href="#retrieving-archived-webpages" id="retrieving-archived-webpages" style="color: inherit; text-decoration: none;">
+					<h3>Retrieving Archived Webpages</h3>
+				</a>
+				<p>You can retrieve a list of all archived webpages or get the latest archived webpage for a specific wallet address or the provided wallet itself.</p>
+				<p>To get all archived webpages, use the <code>getAllArchives</code> method. It returns a promise that resolves to an array of <code>ArchiveType</code> objects, representing each archived webpage. Each object contains the ID, URL, title, webpage URL, screenshot URL, and timestamp.</p>
+				<pre><code class="language-javascript"><span class="hljs-comment">// Get all archives of the loaded Arweave wallet JWK</span>
+<span class="hljs-keyword">const</span> allArchives = <span class="hljs-keyword">await</span> archive.getAllArchives();
+<span class="hljs-built_in">console</span>.log(allArchives)
+<span class="hljs-comment">// Get all archives of a wallet address</span>
+<span class="hljs-keyword">const</span> allAddressArchives = <span class="hljs-keyword">await</span> archive.getAllArchives(<span class="hljs-string">&quot;some-wallet-address&quot;</span>);
+<span class="hljs-built_in">console</span>.log(allAddressArchives)
+</code></pre>
+				<a href="#get-latest-archived-webpages" id="get-latest-archived-webpages" style="color: inherit; text-decoration: none;">
+					<h3>Get latest archived webpages</h3>
+				</a>
+				<p>To get the latest archived webpage for a specific wallet address or the provided wallet itself, use the <code>getLatestArchive</code> method. It returns a promise that resolves to an <code>ArchiveType</code> object representing the latest archived webpage, or null if no archived webpages are found.</p>
+				<pre><code class="language-javascript"><span class="hljs-comment">// Get latest archive of the loaded Arweave wallet JWK</span>
+<span class="hljs-keyword">const</span> latestArchive = <span class="hljs-keyword">await</span> archive.getLatestArchive();
+<span class="hljs-built_in">console</span>.log(latestArchive)
+<span class="hljs-comment">// Get latest archive of a wallet address</span>
+<span class="hljs-keyword">const</span> latestAddressArchive = <span class="hljs-keyword">await</span> archive.getLatestArchive(<span class="hljs-string">&quot;some-wallet-address&quot;</span>);
+<span class="hljs-built_in">console</span>.log(latestAddressArchive)
 </code></pre>
 				<a href="#author" id="author" style="color: inherit; text-decoration: none;">
 					<h2>Author</h2>
@@ -134,12 +180,12 @@ main()
 				<a href="#🤝-contributing" id="🤝-contributing" style="color: inherit; text-decoration: none;">
 					<h2>🤝 Contributing</h2>
 				</a>
-				<p>Contributions, issues and feature requests are welcome!<br />Feel free to check <a href="https://github.com/pawanpaudel93/arweave-archive/issues">issues page</a>.</p>
+				<p>Contributions, issues and feature requests are welcome! \ Feel free to check <a href="https://github.com/pawanpaudel93/arweave-archive/issues">issues page</a>.</p>
 				<a href="#show-your-support" id="show-your-support" style="color: inherit; text-decoration: none;">
 					<h2>Show your support</h2>
 				</a>
 				<p>Give a ⭐️ if this project helped you!</p>
-				<p>Copyright © 2023 <a href="https://github.com/pawanpaudel93">Pawan Paudel</a>.<br /></p>
+				<p>Copyright © 2023 <a href="https://github.com/pawanpaudel93">Pawan Paudel</a></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
