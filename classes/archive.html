@@ -88,6 +88,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="archive.html#arweave" class="tsd-kind-icon">arweave</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="archive.html#browserlessoptions" class="tsd-kind-icon">browserless<wbr>Options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="archive.html#bundlerurl" class="tsd-kind-icon">bundler<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="archive.html#gatewayurl" class="tsd-kind-icon">gateway<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="archive.html#isdevelopment" class="tsd-kind-icon">is<wbr>Development</a></li>
@@ -106,7 +107,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="archive.html#createdataitem" class="tsd-kind-icon">create<wbr>Data<wbr>Item</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="archive.html#dispatch" class="tsd-kind-icon">dispatch</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="archive.html#getallarchives" class="tsd-kind-icon">get<wbr>All<wbr>Archives</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="archive.html#getchromeexecutablepath" class="tsd-kind-icon">get<wbr>Chrome<wbr>Executable<wbr>Path</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="archive.html#getlatestarchive" class="tsd-kind-icon">get<wbr>Latest<wbr>Archive</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="archive.html#getwalletaddress" class="tsd-kind-icon">get<wbr>Wallet<wbr>Address</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="archive.html#initarweave" class="tsd-kind-icon">init<wbr>Arweave</a></li>
@@ -116,7 +116,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="archive.html#processurl" class="tsd-kind-icon">process<wbr>Url</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="archive.html#query" class="tsd-kind-icon">query</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="archive.html#readfileasbuffer" class="tsd-kind-icon">read<wbr>File<wbr>AsBuffer</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="archive.html#runbrowser" class="tsd-kind-icon">run<wbr>Browser</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="archive.html#signtransaction" class="tsd-kind-icon">sign<wbr>Transaction</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="archive.html#tohash" class="tsd-kind-icon">to<wbr>Hash</a></li>
 							</ul>
@@ -130,13 +129,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Archive<span class="tsd-signature-symbol">(</span>jwk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JWKInterface</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, gatewayUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, bundlerUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="archive.html" class="tsd-signature-type">Archive</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Archive<span class="tsd-signature-symbol">(</span>jwk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JWKInterface</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/archiveoptions.html" class="tsd-signature-type">ArchiveOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="archive.html" class="tsd-signature-type">Archive</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L70">lib/archive.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L96">lib/archive.ts:96</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -145,10 +144,7 @@
 									<h5>jwk: <span class="tsd-signature-type">JWKInterface</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> gatewayUrl: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> bundlerUrl: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/archiveoptions.html" class="tsd-signature-type">ArchiveOptions</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="archive.html" class="tsd-signature-type">Archive</a></h4>
@@ -164,7 +160,17 @@
 					<div class="tsd-signature tsd-kind-icon">arweave<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Arweave</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L70">lib/archive.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L95">lib/archive.ts:95</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="browserlessoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> browserless<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">browserless<wbr>Options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/browserlessoptions.html" class="tsd-signature-type">BrowserlessOptions</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L96">lib/archive.ts:96</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -174,7 +180,7 @@
 					<div class="tsd-signature tsd-kind-icon">bundler<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;https://node2.bundlr.network&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L65">lib/archive.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L90">lib/archive.ts:90</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -184,7 +190,7 @@
 					<div class="tsd-signature tsd-kind-icon">gateway<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;https://arweave.net&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L64">lib/archive.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L89">lib/archive.ts:89</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -194,7 +200,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Development<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L67">lib/archive.ts:67</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L92">lib/archive.ts:92</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -204,7 +210,7 @@
 					<div class="tsd-signature tsd-kind-icon">jwk<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">JWKInterface</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L68">lib/archive.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L93">lib/archive.ts:93</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -214,7 +220,7 @@
 					<div class="tsd-signature tsd-kind-icon">manifest<wbr>Content<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"application/x.arweave-manifest+json"</span><span class="tsd-signature-symbol"> = &quot;application/x.arweave-manifest+json&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L61">lib/archive.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L86">lib/archive.ts:86</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -224,17 +230,17 @@
 					<div class="tsd-signature tsd-kind-icon">signer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L69">lib/archive.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L94">lib/archive.ts:94</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="walletaddress" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> wallet<wbr>Address</h3>
-					<div class="tsd-signature tsd-kind-icon">wallet<wbr>Address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> wallet<wbr>Address</h3>
+					<div class="tsd-signature tsd-kind-icon">wallet<wbr>Address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L66">lib/archive.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L91">lib/archive.ts:91</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -244,7 +250,7 @@
 					<div class="tsd-signature tsd-kind-icon">app<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"Arweave-Archive"</span><span class="tsd-signature-symbol"> = &quot;Arweave-Archive&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L62">lib/archive.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L87">lib/archive.ts:87</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -254,7 +260,7 @@
 					<div class="tsd-signature tsd-kind-icon">app<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"0.1.0"</span><span class="tsd-signature-symbol"> = &quot;0.1.0&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L63">lib/archive.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L88">lib/archive.ts:88</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -265,13 +271,13 @@
 					<a name="archiveurl" class="tsd-anchor"></a>
 					<h3>archive<wbr>Url</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">archive<wbr>Url<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#archivereturntype" class="tsd-signature-type">ArchiveReturnType</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">archive<wbr>Url<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/archivereturntype.html" class="tsd-signature-type">ArchiveReturnType</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L237">lib/archive.ts:237</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L244">lib/archive.ts:244</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -280,7 +286,7 @@
 									<h5>url: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#archivereturntype" class="tsd-signature-type">ArchiveReturnType</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/archivereturntype.html" class="tsd-signature-type">ArchiveReturnType</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -288,19 +294,19 @@
 					<a name="createdataitem" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Data<wbr>Item</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Data<wbr>Item<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><a href="../globals.html#ardataitemparams" class="tsd-signature-type">ArDataItemParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DataItem</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Data<wbr>Item<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><a href="../interfaces/ardataitemparams.html" class="tsd-signature-type">ArDataItemParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DataItem</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L174">lib/archive.ts:174</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L181">lib/archive.ts:181</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>item: <a href="../globals.html#ardataitemparams" class="tsd-signature-type">ArDataItemParams</a></h5>
+									<h5>item: <a href="../interfaces/ardataitemparams.html" class="tsd-signature-type">ArDataItemParams</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DataItem</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -311,13 +317,13 @@
 					<a name="dispatch" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> dispatch</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">dispatch<span class="tsd-signature-symbol">(</span>tx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Transaction</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#dispatchreturntype" class="tsd-signature-type">DispatchReturnType</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">dispatch<span class="tsd-signature-symbol">(</span>tx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Transaction</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/dispatchreturntype.html" class="tsd-signature-type">DispatchReturnType</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L196">lib/archive.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L201">lib/archive.ts:201</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -326,7 +332,7 @@
 									<h5>tx: <span class="tsd-signature-type">Transaction</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#dispatchreturntype" class="tsd-signature-type">DispatchReturnType</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/dispatchreturntype.html" class="tsd-signature-type">DispatchReturnType</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -334,39 +340,22 @@
 					<a name="getallarchives" class="tsd-anchor"></a>
 					<h3>get<wbr>All<wbr>Archives</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Archives<span class="tsd-signature-symbol">(</span>walletAddress<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#archivetype" class="tsd-signature-type">ArchiveType</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Archives<span class="tsd-signature-symbol">(</span>walletAddress<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/archivetype.html" class="tsd-signature-type">ArchiveType</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L384">lib/archive.ts:384</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L374">lib/archive.ts:374</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> walletAddress: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> walletAddress: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#archivetype" class="tsd-signature-type">ArchiveType</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getchromeexecutablepath" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Chrome<wbr>Executable<wbr>Path</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Chrome<wbr>Executable<wbr>Path<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L131">lib/archive.ts:131</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/archivetype.html" class="tsd-signature-type">ArchiveType</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -374,22 +363,22 @@
 					<a name="getlatestarchive" class="tsd-anchor"></a>
 					<h3>get<wbr>Latest<wbr>Archive</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Latest<wbr>Archive<span class="tsd-signature-symbol">(</span>walletAddress<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#archivetype" class="tsd-signature-type">ArchiveType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Latest<wbr>Archive<span class="tsd-signature-symbol">(</span>walletAddress<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/archivetype.html" class="tsd-signature-type">ArchiveType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L412">lib/archive.ts:412</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L402">lib/archive.ts:402</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> walletAddress: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> walletAddress: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#archivetype" class="tsd-signature-type">ArchiveType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/archivetype.html" class="tsd-signature-type">ArchiveType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -403,7 +392,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L152">lib/archive.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L158">lib/archive.ts:158</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -414,16 +403,16 @@
 					<a name="initarweave" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> init<wbr>Arweave</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">init<wbr>Arweave<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">init<wbr>Arweave<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Arweave</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L107">lib/archive.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L133">lib/archive.ts:133</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Arweave</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -437,7 +426,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L83">lib/archive.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L111">lib/archive.ts:111</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -463,7 +452,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L182">lib/archive.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L189">lib/archive.ts:189</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -480,13 +469,13 @@
 					<a name="processjwk" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> processJWK</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">processJWK<span class="tsd-signature-symbol">(</span>jwk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JWKInterface</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">processJWK<span class="tsd-signature-symbol">(</span>jwk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JWKInterface</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JWKInterface</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L91">lib/archive.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L119">lib/archive.ts:119</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -495,7 +484,7 @@
 									<h5>jwk: <span class="tsd-signature-type">JWKInterface</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">JWKInterface</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -509,7 +498,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L87">lib/archive.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L115">lib/archive.ts:115</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -526,13 +515,13 @@
 					<a name="query" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> query</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">query<span class="tsd-signature-symbol">(</span>walletAddress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, first<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, cursor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>archivedTransactions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>cursor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>hasNextPage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">query<span class="tsd-signature-symbol">(</span>walletAddress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, first<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, cursor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>archivedTransactions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>cursor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>hasNextPage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L339">lib/archive.ts:339</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L329">lib/archive.ts:329</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -544,10 +533,10 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> first: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 100</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cursor: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cursor: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>archivedTransactions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>cursor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>hasNextPage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>archivedTransactions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>cursor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>hasNextPage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -561,7 +550,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L79">lib/archive.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L107">lib/archive.ts:107</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -575,49 +564,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="runbrowser" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> run<wbr>Browser</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">run<wbr>Browser<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>basePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>browserArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>browserExecutablePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>output<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>userAgent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L136">lib/archive.ts:136</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>basePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>browserArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>browserExecutablePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>output<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>userAgent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter">
-											<h5>base<wbr>Path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
-										</li>
-										<li class="tsd-parameter">
-											<h5>browser<wbr>Args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
-										</li>
-										<li class="tsd-parameter">
-											<h5>browser<wbr>Executable<wbr>Path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
-										</li>
-										<li class="tsd-parameter">
-											<h5>output<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
-										</li>
-										<li class="tsd-parameter">
-											<h5>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
-										</li>
-										<li class="tsd-parameter">
-											<h5>user<wbr>Agent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
-										</li>
-									</ul>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="signtransaction" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> sign<wbr>Transaction</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -627,7 +573,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L158">lib/archive.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L165">lib/archive.ts:165</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -653,7 +599,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/067a0cc/src/lib/archive.ts#L121">lib/archive.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/4d7ff0d/src/lib/archive.ts#L148">lib/archive.ts:148</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -688,6 +634,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="archive.html#arweave" class="tsd-kind-icon">arweave</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="archive.html#browserlessoptions" class="tsd-kind-icon">browserless<wbr>Options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="archive.html#bundlerurl" class="tsd-kind-icon">bundler<wbr>Url</a>
@@ -728,9 +677,6 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="archive.html#getallarchives" class="tsd-kind-icon">get<wbr>All<wbr>Archives</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="archive.html#getchromeexecutablepath" class="tsd-kind-icon">get<wbr>Chrome<wbr>Executable<wbr>Path</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="archive.html#getlatestarchive" class="tsd-kind-icon">get<wbr>Latest<wbr>Archive</a>
 							</li>
@@ -759,9 +705,6 @@
 								<a href="archive.html#readfileasbuffer" class="tsd-kind-icon">read<wbr>File<wbr>AsBuffer</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="archive.html#runbrowser" class="tsd-kind-icon">run<wbr>Browser</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="archive.html#signtransaction" class="tsd-kind-icon">sign<wbr>Transaction</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -771,47 +714,35 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#ardataitemparams" class="tsd-kind-icon">Ar<wbr>Data<wbr>Item<wbr>Params</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/ardataitemparams.html" class="tsd-kind-icon">Ar<wbr>Data<wbr>Item<wbr>Params</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#archivereturntype" class="tsd-kind-icon">Archive<wbr>Return<wbr>Type</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/archiveoptions.html" class="tsd-kind-icon">Archive<wbr>Options</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#archivetype" class="tsd-kind-icon">Archive<wbr>Type</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/archivereturntype.html" class="tsd-kind-icon">Archive<wbr>Return<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#dispatchreturntype" class="tsd-kind-icon">Dispatch<wbr>Return<wbr>Type</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/archivetype.html" class="tsd-kind-icon">Archive<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#errorwithmessage" class="tsd-kind-icon">Error<wbr>With<wbr>Message</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/browserlessoptions.html" class="tsd-kind-icon">Browserless<wbr>Options</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#manifest" class="tsd-kind-icon">Manifest</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/dispatchreturntype.html" class="tsd-kind-icon">Dispatch<wbr>Return<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#manifestpath" class="tsd-kind-icon">Manifest<wbr>Path</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/manifest.html" class="tsd-kind-icon">Manifest</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#tag" class="tsd-kind-icon">Tag</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/manifestpath.html" class="tsd-kind-icon">Manifest<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/tag.html" class="tsd-kind-icon">Tag</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#geterrormessage" class="tsd-kind-icon">get<wbr>Error<wbr>Message</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#iserrorwithmessage" class="tsd-kind-icon">is<wbr>Error<wbr>With<wbr>Message</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#parsecookies" class="tsd-kind-icon">parse<wbr>Cookies</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#run" class="tsd-kind-icon">run</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#runbrowser" class="tsd-kind-icon">run<wbr>Browser</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#toerrorwithmessage" class="tsd-kind-icon">to<wbr>Error<wbr>With<wbr>Message</a>
 					</li>
 				</ul>
 			</nav>
@@ -829,6 +760,9 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
