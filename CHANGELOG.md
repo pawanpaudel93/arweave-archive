@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.5...v0.0.6) (2023-06-01)
+
+
+### Features
+
+* converted to esm ([5d91205](https://github.com/pawanpaudel93/arweave-archive/commit/5d91205c3614900b4ad8a67be79067f379b3ec0e))
+
 ### [0.0.5](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.4...v0.0.5) (2023-05-20)
 
 
