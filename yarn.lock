@@ -4149,6 +4149,11 @@ file-url@3.0.0:
   resolved "https://registry.npmjs.org/file-url/-/file-url-3.0.0.tgz#247a586a746ce9f7a8ed05560290968afc262a77"
   integrity sha512-g872QGsHexznxkIAdK8UiZRe7SkE6kvylShU4Nsj8NvfvZag7S0QuQ4IgvPDkk75HxgjIVDwycFTDAgIiO4nDA==
 
+file-url@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/file-url/-/file-url-4.0.0.tgz#6fe05262d3187da70bc69889091932b6bc7df270"
+  integrity sha512-vRCdScQ6j3Ku6Kd7W1kZk9c++5SqD6Xz5Jotrjr/nkY714M14RFHy/AAVA2WQvpsqVAVgTbDrYyBpU205F0cLw==
+
 filename-reserved-regex@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/filename-reserved-regex/-/filename-reserved-regex-2.0.0.tgz#abf73dfab735d045440abfea2d91f389ebbfa229"
@@ -7337,11 +7342,12 @@ safe-regex@^2.1.1:
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-save-html-screenshot@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.npmjs.org/save-html-screenshot/-/save-html-screenshot-0.0.6.tgz#4e73f455f1332b767d88fb1b074d930cdd4193da"
-  integrity sha512-MX3843mMK8/4GgoopjW1FDUbJCO4lQtpp1mDj6KjYIEpkQ9HLsy5vBjgH6rjjJTXjixC2xuIjAcjB9zkcVmmsw==
+save-html-screenshot@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.npmjs.org/save-html-screenshot/-/save-html-screenshot-0.0.7.tgz#8ce7f0afa23efc30180bb022fa186d75c17ce5af"
+  integrity sha512-3qwQnU3cODX9H8bfbe0mwaYSrDx1caQkMemhER6F7WG47y3Q0BID8yasDeVr06uqCHNTHlcqCf/8S+hOOWpR/Q==
   dependencies:
+    file-url "^4.0.0"
     find-chrome-bin "^1.0.5"
     pkg-dir "^7.0.0"
     promisify-child-process "^4.1.1"
