@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.10...v0.0.11) (2023-06-16)
+
+
+### Bug Fixes
+
+* Exporting types ([a5a24b2](https://github.com/pawanpaudel93/arweave-archive/commit/a5a24b2d9899d16449904778e04251844ef9fed8))
+
 ### [0.0.10](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.9...v0.0.10) (2023-06-16)
 
 
