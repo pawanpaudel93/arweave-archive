@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest'
 import ArLocal from 'arlocal'
 import Arweave from 'arweave'
 
-import { ArweaveArchiver } from '../src/lib/archive'
 import type { ArchiveResult } from '../src/lib/archive'
+import { ArweaveArchiver } from '../src/lib/archive'
 
 describe('should', () => {
   it('archive', async () => {

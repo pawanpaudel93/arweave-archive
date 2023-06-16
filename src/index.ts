@@ -1,1 +1,1 @@
-export { ArweaveArchiver, ArchiveResult } from './lib/archive'
+export { ArweaveArchiver, type ArchiveResult } from './lib/archive'
