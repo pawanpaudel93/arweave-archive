@@ -63,28 +63,28 @@
     "arweave": "^1.13.7",
     "axios": "^1.4.0",
     "mime-types": "^2.1.35",
-    "save-html-screenshot": "^0.0.7"
+    "save-html-screenshot": "^0.0.8"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.38.4",
-    "@antfu/ni": "^0.21.2",
-    "@antfu/utils": "^0.7.2",
+    "@antfu/eslint-config": "^0.38.6",
+    "@antfu/ni": "^0.21.4",
+    "@antfu/utils": "^0.7.4",
     "@types/mime-types": "^2.1.1",
     "arlocal": "^1.1.60",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.37.0",
-    "gh-pages": "^3.1.0",
+    "eslint": "^8.42.0",
+    "gh-pages": "^3.2.3",
     "lint-staged": "^13.2.2",
     "npm-run-all": "^4.1.5",
     "open-cli": "^6.0.1",
-    "prettier": "^2.1.1",
+    "prettier": "^2.8.8",
     "simple-git-hooks": "^2.8.1",
-    "standard-version": "^9.0.0",
-    "ts-node": "^9.0.0",
-    "typedoc": "^0.19.0",
-    "typescript": "^4.0.2",
+    "standard-version": "^9.5.0",
+    "ts-node": "^9.1.1",
+    "typedoc": "^0.19.2",
+    "typescript": "^4.9.5",
     "unbuild": "^1.2.1",
-    "vitest": "^0.31.3"
+    "vitest": "^0.31.4"
   },
   "config": {
     "commitizen": {
