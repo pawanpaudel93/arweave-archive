@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DispatchReturnType | arweave-archive</title>
+	<title>ArchiveResult | arweave-archive</title>
 	<meta name="description" content="Documentation for arweave-archive">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="dispatchreturntype.html">DispatchReturnType</a>
+					<a href="archiveresult.html">ArchiveResult</a>
 				</li>
 			</ul>
-			<h1>Interface DispatchReturnType</h1>
+			<h1>Interface ArchiveResult</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DispatchReturnType</span>
+						<span class="target">ArchiveResult</span>
 					</li>
 				</ul>
 			</section>
@@ -81,8 +81,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="dispatchreturntype.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="dispatchreturntype.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="archiveresult.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="archiveresult.html#status" class="tsd-kind-icon">status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="archiveresult.html#timestamp" class="tsd-kind-icon">timestamp</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="archiveresult.html#title" class="tsd-kind-icon">title</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="archiveresult.html#txid" class="tsd-kind-icon">txID</a></li>
 							</ul>
 						</section>
 					</div>
@@ -91,22 +94,52 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/ec9a29b/src/lib/archive.ts#L26">lib/archive.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/53fb36b/src/lib/archive.ts#L19">lib/archive.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"BASE"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"BUNDLED"</span></div>
+					<a name="status" class="tsd-anchor"></a>
+					<h3>status</h3>
+					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"success"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"error"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/ec9a29b/src/lib/archive.ts#L27">lib/archive.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/53fb36b/src/lib/archive.ts#L18">lib/archive.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="timestamp" class="tsd-anchor"></a>
+					<h3>timestamp</h3>
+					<div class="tsd-signature tsd-kind-icon">timestamp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/53fb36b/src/lib/archive.ts#L22">lib/archive.ts:22</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="title" class="tsd-anchor"></a>
+					<h3>title</h3>
+					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/53fb36b/src/lib/archive.ts#L21">lib/archive.ts:21</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="txid" class="tsd-anchor"></a>
+					<h3>txID</h3>
+					<div class="tsd-signature tsd-kind-icon">txID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pawanpaudel93/arweave-archive/blob/53fb36b/src/lib/archive.ts#L20">lib/archive.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -123,38 +156,47 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="../classes/archive.html" class="tsd-kind-icon">Archive</a>
+						<a href="../classes/arweavearchiver.html" class="tsd-kind-icon">Arweave<wbr>Archiver</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="ardataitemparams.html" class="tsd-kind-icon">Ar<wbr>Data<wbr>Item<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="archiveoptions.html" class="tsd-kind-icon">Archive<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="archivereturntype.html" class="tsd-kind-icon">Archive<wbr>Return<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="archivetype.html" class="tsd-kind-icon">Archive<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="browserlessoptions.html" class="tsd-kind-icon">Browserless<wbr>Options</a>
+						<a href="archive.html" class="tsd-kind-icon">Archive</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="dispatchreturntype.html" class="tsd-kind-icon">Dispatch<wbr>Return<wbr>Type</a>
+						<a href="archiveresult.html" class="tsd-kind-icon">Archive<wbr>Result</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="dispatchreturntype.html#id" class="tsd-kind-icon">id</a>
+								<a href="archiveresult.html#message" class="tsd-kind-icon">message</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="dispatchreturntype.html#type" class="tsd-kind-icon">type</a>
+								<a href="archiveresult.html#status" class="tsd-kind-icon">status</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="archiveresult.html#timestamp" class="tsd-kind-icon">timestamp</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="archiveresult.html#title" class="tsd-kind-icon">title</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="archiveresult.html#txid" class="tsd-kind-icon">txID</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="archiveroptions.html" class="tsd-kind-icon">Archiver<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="browserlessoptions.html" class="tsd-kind-icon">Browserless<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="dispatchresult.html" class="tsd-kind-icon">Dispatch<wbr>Result</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="manifest.html" class="tsd-kind-icon">Manifest</a>
 					</li>
