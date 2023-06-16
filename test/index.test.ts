@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest'
 import ArLocal from 'arlocal'
 import Arweave from 'arweave'
 
-import type { ArchiveReturnType } from '../src/lib/archive'
-import { Archive } from '../src/lib/archive'
+import { ArweaveArchiver } from '../src/lib/archive'
+import type { ArchiveResult } from '../src/lib/archive'
 
 describe('should', () => {
   it('archive', async () => {
@@ -15,13 +15,13 @@ describe('should', () => {
     })
     await arLocal.start()
     const jwk = await arweave.wallets.generate()
-    expect(Archive.appName).toBe('Arweave-Archive')
-    expect(Archive.appVersion).toBe('0.1.0')
-    const archive = new Archive(jwk, {
+    expect(ArweaveArchiver.appName).toBe('Arweave-Archive')
+    expect(ArweaveArchiver.appVersion).toBe('0.1.0')
+    const archive = new ArweaveArchiver(jwk, {
       gatewayUrl: 'http://localhost:1984',
       bundlerUrl: 'https://devnet.bundlr.network',
     })
-    const output: ArchiveReturnType = await archive.archiveUrl('https://github.com/pawanpaudel93')
+    const output: ArchiveResult = await archive.archiveUrl('https://github.com/pawanpaudel93')
     // eslint-disable-next-line no-console
     console.log(output)
     await arweave.api.get('/mine')

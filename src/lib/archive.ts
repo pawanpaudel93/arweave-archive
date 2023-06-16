@@ -14,7 +14,7 @@ import { HtmlScreenshotSaver, type SaveReturnType } from 'save-html-screenshot'
 
 import { getErrorMessage } from './utils'
 
-export interface ArchiveReturnType {
+export interface ArchiveResult {
   status: 'success' | 'error'
   message: string
   txID: string
@@ -22,7 +22,7 @@ export interface ArchiveReturnType {
   timestamp: number
 }
 
-interface DispatchReturnType {
+interface DispatchResult {
   id: string
   type: 'BASE' | 'BUNDLED'
 }
@@ -54,7 +54,7 @@ interface Manifest {
   paths: Record<string, ManifestPath>
 }
 
-interface ArchiveType {
+interface Archive {
   id: string
   url: string
   title: string
@@ -76,13 +76,13 @@ interface BrowserlessOptions {
   userAgent?: string
 }
 
-interface ArchiveOptions {
+interface ArchiverOptions {
   gatewayUrl?: string
   bundlerUrl?: string
   browserlessOptions?: BrowserlessOptions
 }
 
-export class Archive {
+export class ArweaveArchiver {
   private readonly manifestContentType = 'application/x.arweave-manifest+json'
   static readonly appName = 'Arweave-Archive'
   static readonly appVersion = '0.1.0'
@@ -95,7 +95,7 @@ export class Archive {
   private arweave: Arweave
   private browserlessOptions?: BrowserlessOptions
 
-  constructor(jwk: JWKInterface | string, options?: ArchiveOptions) {
+  constructor(jwk: JWKInterface | string, options?: ArchiverOptions) {
     this.gatewayUrl = this.processUrl(options?.gatewayUrl ?? this.gatewayUrl)
     this.bundlerUrl = this.processUrl(options?.bundlerUrl ?? this.bundlerUrl)
     this.browserlessOptions = options?.browserlessOptions
@@ -198,7 +198,7 @@ export class Archive {
     return uploader.lastResponseStatus
   }
 
-  private async dispatch(tx: Transaction): Promise<DispatchReturnType> {
+  private async dispatch(tx: Transaction): Promise<DispatchResult> {
     let errorMessage: string
     if (!tx.quantity || (tx.quantity === '0' && !this.isDevelopment)) {
       try {
@@ -215,7 +215,7 @@ export class Archive {
           maxBodyLength: Infinity,
         })
         if (res.status >= 200 && res.status < 300) {
-          const dispatchResult: DispatchReturnType = {
+          const dispatchResult: DispatchResult = {
             id: bundleTx.id,
             type: 'BUNDLED',
           }
@@ -229,7 +229,7 @@ export class Archive {
     try {
       await this.signTransaction(tx)
       await this.manageUpload(tx)
-      const dispatchResult: DispatchReturnType = {
+      const dispatchResult: DispatchResult = {
         id: tx.id,
         type: 'BASE',
       }
@@ -241,7 +241,7 @@ export class Archive {
     throw new Error(errorMessage)
   }
 
-  public archiveUrl = async (url: string): Promise<ArchiveReturnType> => {
+  public archiveUrl = async (url: string): Promise<ArchiveResult> => {
     let tempDirectory = ''
     let result: SaveReturnType
     try {
@@ -278,8 +278,8 @@ export class Archive {
             const data = new Uint8Array(bufferData)
             const transaction = await this.arweave.createTransaction({ data }, this.jwk)
             const mimeType = mime.lookup(filePath) || 'application/octet-stream'
-            transaction.addTag('App-Name', Archive.appName)
-            transaction.addTag('App-Version', Archive.appVersion)
+            transaction.addTag('App-Name', ArweaveArchiver.appName)
+            transaction.addTag('App-Version', ArweaveArchiver.appVersion)
             transaction.addTag('Content-Type', mimeType)
             transaction.addTag(isIndexFile ? 'page:title' : 'screenshot:title', result.title)
             transaction.addTag(isIndexFile ? 'page:url' : 'screenshot:url', url)
@@ -294,8 +294,8 @@ export class Archive {
 
       const data = new TextEncoder().encode(JSON.stringify(manifest))
       const manifestTransaction = await this.arweave.createTransaction({ data }, this.jwk)
-      manifestTransaction.addTag('App-Name', Archive.appName)
-      manifestTransaction.addTag('App-Version', Archive.appVersion)
+      manifestTransaction.addTag('App-Name', ArweaveArchiver.appName)
+      manifestTransaction.addTag('App-Version', ArweaveArchiver.appVersion)
       manifestTransaction.addTag('Content-Type', this.manifestContentType)
       manifestTransaction.addTag('Title', result.title)
       manifestTransaction.addTag('Type', 'archive')
@@ -335,9 +335,9 @@ export class Archive {
                     ${cursor ? `after: "${cursor}",` : ''}
                     owners: ["${walletAddress}"],
                     tags: [
-                        { name: "App-Name", values: ["${Archive.appName}"] }
+                        { name: "App-Name", values: ["${ArweaveArchiver.appName}"] }
                         { name: "Content-Type", values: ["${this.manifestContentType}"] }
-                        { name: "App-Version", values: ["${Archive.appVersion}"]}
+                        { name: "App-Version", values: ["${ArweaveArchiver.appVersion}"]}
                     ]
                 ) {
                     pageInfo { 
@@ -371,9 +371,9 @@ export class Archive {
     return { archivedTransactions, cursor, hasNextPage }
   }
 
-  public getAllArchives = async (walletAddress?: string): Promise<ArchiveType[]> => {
+  public getAllArchives = async (walletAddress?: string): Promise<Archive[]> => {
     const address = walletAddress ?? (await this.getWalletAddress())
-    const archives: ArchiveType[] = []
+    const archives: Archive[] = []
     let hasNextPage = true
     let cursor = ''
     while (hasNextPage) {
@@ -399,7 +399,7 @@ export class Archive {
     return archives
   }
 
-  public getLatestArchive = async (walletAddress?: string): Promise<ArchiveType | null> => {
+  public getLatestArchive = async (walletAddress?: string): Promise<Archive | null> => {
     const address = walletAddress ?? (await this.getWalletAddress())
 
     const { archivedTransactions } = await this.query(address, 1)

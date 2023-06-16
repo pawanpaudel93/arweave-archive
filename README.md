@@ -26,10 +26,10 @@ pnpm add arweave-archive
 
 ## Usage
 
-To use the Arweave Archive package, import it and create an instance of the `Archive` class. You need to provide a JSON Web Key (JWK) or a path to a JWK file, which will be used to sign transactions. Optionally, you can also provide the gateway and bundler URLs and browserless options. If browserless options is not provided, locally installed Chrome browser is used to capture the webpage and screenshot of the provided url using puppeteer.
+To use the Arweave Archive package, import it and create an instance of the `ArweaveArchiver` class. You need to provide a JSON Web Key (JWK) or a path to a JWK file, which will be used to sign transactions. Optionally, you can also provide the gateway and bundler URLs and browserless options. If browserless options is not provided, locally installed Chrome browser is used to capture the webpage and screenshot of the provided url using puppeteer.
 
 ```ts
-import { Archive } from 'arweave-archive'
+import { ArweaveArchiver } from 'arweave-archive'
 
 const jwk = '<your-jwk-file-path-or-data>'
 const options = {
@@ -37,12 +37,12 @@ const options = {
   bundlerUrl: 'https://node2.bundlr.network',
 }
 
-const archive = new Archive(jwk, options)
+const archiver = new ArweaveArchiver(jwk, options)
 ```
 
 ### Configuration
 
-The `Archive` class allows you to configure the following options:
+The `ArweaveArchiver` class allows you to configure the following options:
 
 - `gatewayUrl` (optional): The URL of the Arweave gateway to use for uploading and accessing archived webpages. (default: '<https://arweave.net>')
 - `bundlerUrl` (optional): The URL of the Arweave bundler to use for bundling and uploading archives. (default: '<https://node2.bundlr.network>')
@@ -79,7 +79,7 @@ const options = {
   }
 }
 
-const archive = new Archive(jwk, options)
+const archiver = new ArweaveArchiver(jwk, options)
 ```
 
 Please note that the browserlessOptions is optional, and you can omit them if you don't need to use it for capturing webpage and screenshots of the provided url.
@@ -89,7 +89,7 @@ Please note that the browserlessOptions is optional, and you can omit them if yo
 You can archive a webpage by providing its URL to the `archiveUrl` method. The method returns a promise that resolves to an `ArchiveReturnType` object, containing the status of the archive process, a message, the transaction ID, the title of the webpage, and the timestamp.
 
 ```ts
-const output = await archive.archiveUrl('https://github.com/pawanpaudel93')
+const output = await archiver.archiveUrl('https://github.com/pawanpaudel93')
 console.log(output)
 ```
 
@@ -101,10 +101,10 @@ To get all archived webpages, use the `getAllArchives` method. It returns a prom
 
 ```javascript
 // Get all archives of the loaded Arweave wallet JWK
-const allArchives = await archive.getAllArchives();
+const allArchives = await archiver.getAllArchives();
 console.log(allArchives)
 // Get all archives of a wallet address
-const allAddressArchives = await archive.getAllArchives("some-wallet-address");
+const allAddressArchives = await archiver.getAllArchives("some-wallet-address");
 console.log(allAddressArchives)
 ```
 
@@ -114,10 +114,10 @@ To get the latest archived webpage for a specific wallet address or the provided
 
 ```javascript
 // Get latest archive of the loaded Arweave wallet JWK
-const latestArchive = await archive.getLatestArchive();
+const latestArchive = await archiver.getLatestArchive();
 console.log(latestArchive)
 // Get latest archive of a wallet address
-const latestAddressArchive = await archive.getLatestArchive("some-wallet-address");
+const latestAddressArchive = await archiver.getLatestArchive("some-wallet-address");
 console.log(latestAddressArchive)
 ```
 
