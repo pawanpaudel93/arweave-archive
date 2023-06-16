@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.9...v0.0.10) (2023-06-16)
+
+
+### Bug Fixes
+
+* Rename interfaces & Archive class to ArweaveArchiver ([b1f7b56](https://github.com/pawanpaudel93/arweave-archive/commit/b1f7b5655dd22324a102fbb04faaf974796e56f0))
+
 ### [0.0.9](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.8...v0.0.9) (2023-06-16)
 
 ### [0.0.8](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.7...v0.0.8) (2023-06-08)
