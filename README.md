@@ -86,7 +86,7 @@ Please note that the browserlessOptions is optional, and you can omit them if yo
 
 ### Archiving a URL
 
-You can archive a webpage by providing its URL to the `archiveUrl` method. The method returns a promise that resolves to an `ArchiveReturnType` object, containing the status of the archive process, a message, the transaction ID, the title of the webpage, and the timestamp.
+You can archive a webpage by providing its URL to the `archiveUrl` method. The method returns a promise that resolves to an `ArchiveResult` object, containing the status of the archive process, a message, the transaction ID, the title of the webpage, and the timestamp.
 
 ```ts
 const output = await archiver.archiveUrl('https://github.com/pawanpaudel93')
@@ -97,7 +97,7 @@ console.log(output)
 
 You can retrieve a list of all archived webpages or get the latest archived webpage for a specific wallet address or the provided wallet itself.
 
-To get all archived webpages, use the `getAllArchives` method. It returns a promise that resolves to an array of `ArchiveType` objects, representing each archived webpage. Each object contains the ID, URL, title, webpage URL, screenshot URL, and timestamp.
+To get all archived webpages, use the `getAllArchives` method. It returns a promise that resolves to an array of `Archive` objects, representing each archived webpage. Each object contains the ID, URL, title, webpage URL, screenshot URL, and timestamp.
 
 ```javascript
 // Get all archives of the loaded Arweave wallet JWK
@@ -110,7 +110,7 @@ console.log(allAddressArchives)
 
 ### Get latest archived webpages
 
-To get the latest archived webpage for a specific wallet address or the provided wallet itself, use the `getLatestArchive` method. It returns a promise that resolves to an `ArchiveType` object representing the latest archived webpage, or null if no archived webpages are found.
+To get the latest archived webpage for a specific wallet address or the provided wallet itself, use the `getLatestArchive` method. It returns a promise that resolves to an `Archive` object representing the latest archived webpage, or null if no archived webpages are found.
 
 ```javascript
 // Get latest archive of the loaded Arweave wallet JWK
