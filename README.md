@@ -46,35 +46,42 @@ The `ArweaveArchiver` class allows you to configure the following options:
 
 - `gatewayUrl` (optional): The URL of the Arweave gateway to use for uploading and accessing archived webpages. (default: '<https://arweave.net>')
 - `bundlerUrl` (optional): The URL of the Arweave bundler to use for bundling and uploading archives. (default: '<https://node2.bundlr.network>')
-- `browserlessOptions` (optional): The browserlessOptions object allows you to configure options related to [browserless.io](https://www.browserless.io/docs/chrome-flags). Here are the available options:
+- `browserOptions` (optional):
+  - `headless` (optional): Set whether to run the browser in headless mode. Default: `true`
+  - `userAgent` (optional): Set a custom user agent. Default: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36`
+  - `width` (optional): Specify the window width. Default: `1920`
+  - `height` (optional): Specify the window height. Default: `1080`
+  - `httpProxy` (optional): An object with following properties for proxy.
+    - `server` (optional): The URL of the proxy server to use.
+    - `username` (optional): The username of the proxy server to use.
+    - `password` (optional): The password of the proxy server to use.
+  - `browserlessOptions` (optional): The browserlessOptions object allows you to configure options related to [browserless.io](https://www.browserless.io/docs/chrome-flags)
+    - `apiKey` (required): Your browserless.io API key.
+    - `blockAds` (optional): Enable ad-blocking.
+    - `stealth` (optional): Enable stealth mode.
+    - `userDataDir` (optional): Path to the user data directory.
+    - `keepalive` (optional): Keep the browser session alive for a specified duration (in milliseconds).
+    - `ignoreDefaultArgs` (optional): Specify a comma-separated list of Chrome flags to ignore.
+    - `timeout` (optional): Set the timeout (in milliseconds) for requests.
 
-  - `apiKey` (optional): Your API key for using a browserless service.
-  - `proxyServer` (optional): The URL of the proxy server to use.
-  - `blockAds` (optional): A boolean indicating whether to block ads on the webpage.
-  - `stealth` (optional): A boolean indicating whether to enable stealth mode for the browser.
-  - `userDataDir` (optional): The directory where user data for the browser will be stored.
-  - `keepalive` (optional): The maximum time to keep the browser process alive, in milliseconds.
-  - `windowSize` (optional): The size of the browser window in pixels, specified as a string in the format "width,height".
-  - `ignoreDefaultArgs` (optional): Additional arguments to pass to the browser process.
-  - `headless` (optional): A boolean indicating whether to run the browser in headless mode. Default is true.
-  - `userAgent` (optional): The user agent string to use for the browser.
-  - `timeout` (optional): session timer.
-
-Here's an example of how you can set the browserlessOptions:
+Here's an example of how you can set the browserOptions:
 
 ```ts
 const options = {
+  headless: true,
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
+  httpProxy: {
+    server: 'your-proxy-server'
+  },
+  height: '1080',
+  width: '1920',
   browserlessOptions: {
     apiKey: 'your-api-key',
-    proxyServer: 'your-proxy-server',
     blockAds: true,
     stealth: true,
     userDataDir: 'your-user-data-dir',
     keepalive: 60000,
-    windowSize: '1280,720',
     ignoreDefaultArgs: '--disable-extensions',
-    headless: true,
-    userAgent: 'your-user-agent',
     timeout: 60000
   }
 }
