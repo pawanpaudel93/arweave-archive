@@ -100,39 +100,48 @@
 				</a>
 				<p>The <code>ArweaveArchiver</code> class allows you to configure the following options:</p>
 				<ul>
-					<li><p><code>gatewayUrl</code> (optional): The URL of the Arweave gateway to use for uploading and accessing archived webpages. (default: &#39;<a href="https://arweave.net">https://arweave.net</a>&#39;)</p>
-					</li>
-					<li><p><code>bundlerUrl</code> (optional): The URL of the Arweave bundler to use for bundling and uploading archives. (default: &#39;<a href="https://node2.bundlr.network">https://node2.bundlr.network</a>&#39;)</p>
-					</li>
-					<li><p><code>browserlessOptions</code> (optional): The browserlessOptions object allows you to configure options related to <a href="https://www.browserless.io/docs/chrome-flags">browserless.io</a>. Here are the available options:</p>
-						<ul>
-							<li><code>apiKey</code> (optional): Your API key for using a browserless service.</li>
-							<li><code>proxyServer</code> (optional): The URL of the proxy server to use.</li>
-							<li><code>blockAds</code> (optional): A boolean indicating whether to block ads on the webpage.</li>
-							<li><code>stealth</code> (optional): A boolean indicating whether to enable stealth mode for the browser.</li>
-							<li><code>userDataDir</code> (optional): The directory where user data for the browser will be stored.</li>
-							<li><code>keepalive</code> (optional): The maximum time to keep the browser process alive, in milliseconds.</li>
-							<li><code>windowSize</code> (optional): The size of the browser window in pixels, specified as a string in the format &quot;width,height&quot;.</li>
-							<li><code>ignoreDefaultArgs</code> (optional): Additional arguments to pass to the browser process.</li>
-							<li><code>headless</code> (optional): A boolean indicating whether to run the browser in headless mode. Default is true.</li>
-							<li><code>userAgent</code> (optional): The user agent string to use for the browser.</li>
-							<li><code>timeout</code> (optional): session timer.</li>
+					<li><code>gatewayUrl</code> (optional): The URL of the Arweave gateway to use for uploading and accessing archived webpages. (default: &#39;<a href="https://arweave.net">https://arweave.net</a>&#39;)</li>
+					<li><code>bundlerUrl</code> (optional): The URL of the Arweave bundler to use for bundling and uploading archives. (default: &#39;<a href="https://node2.bundlr.network">https://node2.bundlr.network</a>&#39;)</li>
+					<li><code>browserOptions</code> (optional):<ul>
+							<li><code>headless</code> (optional): Set whether to run the browser in headless mode. Default: <code>true</code></li>
+							<li><code>userAgent</code> (optional): Set a custom user agent. Default: <code>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36</code></li>
+							<li><code>width</code> (optional): Specify the window width. Default: <code>1920</code></li>
+							<li><code>height</code> (optional): Specify the window height. Default: <code>1080</code></li>
+							<li><code>httpProxy</code> (optional): An object with following properties for proxy.<ul>
+									<li><code>server</code> (optional): The URL of the proxy server to use.</li>
+									<li><code>username</code> (optional): The username of the proxy server to use.</li>
+									<li><code>password</code> (optional): The password of the proxy server to use.</li>
+								</ul>
+							</li>
+							<li><code>browserlessOptions</code> (optional): The browserlessOptions object allows you to configure options related to <a href="https://www.browserless.io/docs/chrome-flags">browserless.io</a><ul>
+									<li><code>apiKey</code> (required): Your browserless.io API key.</li>
+									<li><code>blockAds</code> (optional): Enable ad-blocking.</li>
+									<li><code>stealth</code> (optional): Enable stealth mode.</li>
+									<li><code>userDataDir</code> (optional): Path to the user data directory.</li>
+									<li><code>keepalive</code> (optional): Keep the browser session alive for a specified duration (in milliseconds).</li>
+									<li><code>ignoreDefaultArgs</code> (optional): Specify a comma-separated list of Chrome flags to ignore.</li>
+									<li><code>timeout</code> (optional): Set the timeout (in milliseconds) for requests.</li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 				</ul>
-				<p>Here&#39;s an example of how you can set the browserlessOptions:</p>
+				<p>Here&#39;s an example of how you can set the browserOptions:</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">headless</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">userAgent</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36&#x27;</span>,
+  <span class="hljs-attr">httpProxy</span>: {
+    <span class="hljs-attr">server</span>: <span class="hljs-string">&#x27;your-proxy-server&#x27;</span>
+  },
+  <span class="hljs-attr">height</span>: <span class="hljs-string">&#x27;1080&#x27;</span>,
+  <span class="hljs-attr">width</span>: <span class="hljs-string">&#x27;1920&#x27;</span>,
   <span class="hljs-attr">browserlessOptions</span>: {
     <span class="hljs-attr">apiKey</span>: <span class="hljs-string">&#x27;your-api-key&#x27;</span>,
-    <span class="hljs-attr">proxyServer</span>: <span class="hljs-string">&#x27;your-proxy-server&#x27;</span>,
     <span class="hljs-attr">blockAds</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">stealth</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">userDataDir</span>: <span class="hljs-string">&#x27;your-user-data-dir&#x27;</span>,
     <span class="hljs-attr">keepalive</span>: <span class="hljs-number">60000</span>,
-    <span class="hljs-attr">windowSize</span>: <span class="hljs-string">&#x27;1280,720&#x27;</span>,
     <span class="hljs-attr">ignoreDefaultArgs</span>: <span class="hljs-string">&#x27;--disable-extensions&#x27;</span>,
-    <span class="hljs-attr">headless</span>: <span class="hljs-literal">true</span>,
-    <span class="hljs-attr">userAgent</span>: <span class="hljs-string">&#x27;your-user-agent&#x27;</span>,
     <span class="hljs-attr">timeout</span>: <span class="hljs-number">60000</span>
   }
 }
@@ -212,9 +221,6 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/archiveroptions.html" class="tsd-kind-icon">Archiver<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/browserlessoptions.html" class="tsd-kind-icon">Browserless<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/dispatchresult.html" class="tsd-kind-icon">Dispatch<wbr>Result</a>
