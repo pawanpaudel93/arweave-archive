@@ -1,7 +1,7 @@
 {
   "name": "arweave-archive",
   "type": "module",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A node package to archive webpage & it's screenshot to Arweave",
   "author": "Pawan Paudel <pawanpaudel93@gmail.com>",
   "license": "MIT",

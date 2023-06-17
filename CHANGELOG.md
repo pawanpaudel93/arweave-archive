@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.11...v0.0.12) (2023-06-17)
+
+
+### Bug Fixes
+
+* Upgrade save-html-screenshot and its related code ([6382067](https://github.com/pawanpaudel93/arweave-archive/commit/6382067df6ba9087069e556184f4405aa1b43e9b))
+
 ### [0.0.11](https://github.com/pawanpaudel93/arweave-archive/compare/v0.0.10...v0.0.11) (2023-06-16)
 
 
