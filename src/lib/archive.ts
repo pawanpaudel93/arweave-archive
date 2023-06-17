@@ -2,15 +2,15 @@ import { createHash, randomBytes } from 'node:crypto'
 import fs, { promises as fsPromises } from 'node:fs'
 import path from 'node:path'
 import type { Buffer } from 'node:buffer'
-
 import type { DataItem, Signer, Transaction } from 'arbundles'
 import { ArweaveSigner, createData } from 'arbundles'
 import Arweave from 'arweave'
 import type { SignatureOptions } from 'arweave/node/lib/crypto/crypto-interface'
 import type { JWKInterface } from 'arweave/node/lib/wallet'
+import { HtmlScreenshotSaver } from 'save-html-screenshot'
+import type { HtmlScreenshotSaverOptions, SaveResult } from 'save-html-screenshot'
 import axios from 'axios'
 import mime from 'mime-types'
-import { HtmlScreenshotSaver, type SaveReturnType } from 'save-html-screenshot'
 
 import { getErrorMessage } from './utils'
 
@@ -63,23 +63,10 @@ interface Archive {
   timestamp: number
 }
 
-interface BrowserlessOptions {
-  apiKey: string
-  proxyServer?: string
-  blockAds?: boolean
-  stealth?: boolean
-  userDataDir?: string
-  keepalive?: number
-  windowSize?: string
-  ignoreDefaultArgs?: string
-  headless?: boolean
-  userAgent?: string
-}
-
 interface ArchiverOptions {
   gatewayUrl?: string
   bundlerUrl?: string
-  browserlessOptions?: BrowserlessOptions
+  browserOptions?: HtmlScreenshotSaverOptions
 }
 
 export class ArweaveArchiver {
@@ -93,12 +80,12 @@ export class ArweaveArchiver {
   private jwk: JWKInterface
   private signer: Signer
   private arweave: Arweave
-  private browserlessOptions?: BrowserlessOptions
+  private browserOptions?: HtmlScreenshotSaverOptions
 
   constructor(jwk: JWKInterface | string, options?: ArchiverOptions) {
     this.gatewayUrl = this.processUrl(options?.gatewayUrl ?? this.gatewayUrl)
     this.bundlerUrl = this.processUrl(options?.bundlerUrl ?? this.bundlerUrl)
-    this.browserlessOptions = options?.browserlessOptions
+    this.browserOptions = options?.browserOptions
     this.jwk = this.processJWK(jwk)
     this.signer = new ArweaveSigner(this.jwk)
     this.arweave = this.initArweave()
@@ -243,7 +230,7 @@ export class ArweaveArchiver {
 
   public archiveUrl = async (url: string): Promise<ArchiveResult> => {
     let tempDirectory = ''
-    let result: SaveReturnType
+    let result: SaveResult
     try {
       const manifest: Manifest = {
         manifest: 'arweave/paths',
@@ -254,7 +241,7 @@ export class ArweaveArchiver {
         paths: {},
       }
 
-      const saver = new HtmlScreenshotSaver(this.browserlessOptions)
+      const saver = new HtmlScreenshotSaver(this.browserOptions)
       result = await saver.save(url)
       if (result.status === 'error')
         throw new Error(result.message)
