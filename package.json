@@ -64,7 +64,7 @@
     "arweave": "^1.13.7",
     "axios": "^1.4.0",
     "mime-types": "^2.1.35",
-    "save-html-screenshot": "^0.0.12"
+    "save-html-screenshot": "^0.0.13"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",

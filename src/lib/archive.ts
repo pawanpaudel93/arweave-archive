@@ -241,7 +241,7 @@ export class ArweaveArchiver {
         paths: {},
       }
 
-      const saver = new HtmlScreenshotSaver(this.browserOptions)
+      const saver = new HtmlScreenshotSaver({ ...this.browserOptions, saveScreenshot: true })
       result = await saver.save(url)
       if (result.status === 'error')
         throw new Error(result.message)
