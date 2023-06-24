@@ -14,11 +14,34 @@ import mime from 'mime-types'
 
 import { getErrorMessage } from './utils'
 
+/**
+ * Represents the result of an archive operation.
+ */
 export interface ArchiveResult {
+  /**
+   * The status of the archive operation.
+   * Possible values are 'success' or 'error'.
+   */
   status: 'success' | 'error'
+
+  /**
+   * A message associated with the archive result.
+   */
   message: string
+
+  /**
+   * The transaction ID of the archived data on the Arweave network.
+   */
   txID: string
+
+  /**
+   * The title of the archived data.
+   */
   title: string
+
+  /**
+   * The timestamp of the archive operation.
+   */
   timestamp: number
 }
 
@@ -69,6 +92,9 @@ interface ArchiverOptions {
   browserOptions?: HtmlScreenshotSaverOptions
 }
 
+/**
+ * The ArweaveArchiver class provides methods for archiving webpages to the Arweave network.
+ */
 export class ArweaveArchiver {
   private readonly manifestContentType = 'application/x.arweave-manifest+json'
   static readonly appName = 'Arweave-Archive'
@@ -82,6 +108,12 @@ export class ArweaveArchiver {
   private arweave: Arweave
   private browserOptions?: HtmlScreenshotSaverOptions
 
+  /**
+   * Creates an instance of the ArweaveArchiver class.
+   *
+   * @param {JWKInterface | string} jwk - The JWKInterface object or path to the JWK file used for signing transactions.
+   * @param {ArchiverOptions} [options] - Optional. The options for the ArweaveArchiver instance.
+   */
   constructor(jwk: JWKInterface | string, options?: ArchiverOptions) {
     this.gatewayUrl = this.processUrl(options?.gatewayUrl ?? this.gatewayUrl)
     this.bundlerUrl = this.processUrl(options?.bundlerUrl ?? this.bundlerUrl)
@@ -228,6 +260,14 @@ export class ArweaveArchiver {
     throw new Error(errorMessage)
   }
 
+  /**
+   * Retrieves an archive from the specified URL.
+   *
+   * @param {string} url - The URL of the archive to retrieve.
+   * @returns {Promise<Archive>} A promise that resolves to the Archive object representing the retrieved archive.
+   * @throws {Error} If the archive retrieval fails or the URL is invalid.
+   */
+
   public archiveUrl = async (url: string): Promise<ArchiveResult> => {
     let tempDirectory = ''
     let result: SaveResult
@@ -358,6 +398,13 @@ export class ArweaveArchiver {
     return { archivedTransactions, cursor, hasNextPage }
   }
 
+  /**
+   * Get all archives of a wallet.
+   * If no wallet address is provided, it retrieves archives for the initialized wallet.
+   *
+   * @param {string} [walletAddress] Optional. Wallet address to get archives.
+   * @returns {Promise<Archive[]>} A promise that resolves to an array of Archive objects.
+   */
   public getAllArchives = async (walletAddress?: string): Promise<Archive[]> => {
     const address = walletAddress ?? (await this.getWalletAddress())
     const archives: Archive[] = []
@@ -386,6 +433,13 @@ export class ArweaveArchiver {
     return archives
   }
 
+  /**
+   * Get the latest archive of a wallet.
+   * If no wallet address is provided, it retrieves the latest archive for the initialized wallet.
+   *
+   * @param {string} [walletAddress] Optional. Wallet address to get the latest archive.
+   * @returns {Promise<Archive | null>} A promise that resolves to the latest Archive object or null if no archive is found.
+   */
   public getLatestArchive = async (walletAddress?: string): Promise<Archive | null> => {
     const address = walletAddress ?? (await this.getWalletAddress())
 
