@@ -46,35 +46,16 @@ The `ArweaveArchiver` class allows you to configure the following options:
 
 - `gatewayUrl` (optional): The URL of the Arweave gateway to use for uploading and accessing archived webpages. (default: '<https://arweave.net>')
 - `bundlerUrl` (optional): The URL of the Arweave bundler to use for bundling and uploading archives. (default: '<https://node2.bundlr.network>')
-- `browserOptions` (optional):
-  - `headless` (optional): Set whether to run the browser in headless mode. Default: `true`
-  - `userAgent` (optional): Set a custom user agent. Default: `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36`
-  - `width` (optional): Specify the window width. Default: `1920`
-  - `height` (optional): Specify the window height. Default: `1080`
-  - `httpProxy` (optional): An object with following properties for proxy.
-    - `server` (optional): The URL of the proxy server to use.
-    - `username` (optional): The username of the proxy server to use.
-    - `password` (optional): The password of the proxy server to use.
-  - `browserlessOptions` (optional): The browserlessOptions object allows you to configure options related to [browserless.io](https://www.browserless.io/docs/chrome-flags)
-    - `apiKey` (required): Your browserless.io API key.
-    - `blockAds` (optional): Enable ad-blocking.
-    - `stealth` (optional): Enable stealth mode.
-    - `userDataDir` (optional): Path to the user data directory.
-    - `keepalive` (optional): Keep the browser session alive for a specified duration (in milliseconds).
-    - `ignoreDefaultArgs` (optional): Specify a comma-separated list of Chrome flags to ignore.
-    - `timeout` (optional): Set the timeout (in milliseconds) for requests.
+- `browserOptions` (optional): [HtmlScreenshotSaverOptions](https://github.com/pawanpaudel93/save-html-screenshot/blob/fd689be68ceeb5eafc8622f6a1542843870de91d/src/types.ts#L44C1-L44C1)
 
 Here's an example of how you can set the browserOptions:
 
 ```ts
 const options = {
-  headless: true,
+  browserHeadless: true,
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
-  httpProxy: {
-    server: 'your-proxy-server'
-  },
-  height: '1080',
-  width: '1920',
+  browserHeight: 1080,
+  browserWidth: 1920,
   browserlessOptions: {
     apiKey: 'your-api-key',
     blockAds: true,
@@ -127,6 +108,10 @@ console.log(latestArchive)
 const latestAddressArchive = await archiver.getLatestArchive("some-wallet-address");
 console.log(latestAddressArchive)
 ```
+
+## Related
+
+- [save-html-screenshot](https://github.com/pawanpaudel93/save-html-screenshot)
 
 ## Author
 
