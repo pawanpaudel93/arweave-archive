@@ -57,14 +57,15 @@
     "version": "standard-version",
     "reset-hard": "git clean -dfx && git reset --hard && yarn",
     "prepare-release": "run-s reset-hard test doc:html version doc:publish",
-    "publish-package": "npm run build && git push --follow-tags origin main && npm publish"
+    "publish-package": "npm run build && git push --follow-tags origin main && npm publish",
+    "release": "npm run prepare-release && npm run publish-package"
   },
   "dependencies": {
     "arbundles": "^0.9.6",
     "arweave": "^1.13.7",
     "axios": "^1.4.0",
     "mime-types": "^2.1.35",
-    "save-html-screenshot": "^0.0.13"
+    "save-html-screenshot": "^0.0.15"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",

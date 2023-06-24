@@ -1131,10 +1131,10 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@pawanpaudel93/single-file@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.npmjs.org/@pawanpaudel93/single-file/-/single-file-1.0.5.tgz#e7cd9330678c2fa135fbface9aad3c2ddab1e93c"
-  integrity sha512-WvTsJLaH/0AOI01UKveDj6xc3+jGAUiIj4eM2rNGvyNQhxWNaWIZdfLKnDODtpGW4D/mAitQ6dMqoFJJnpQZyw==
+"@pawanpaudel93/single-file@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/@pawanpaudel93/single-file/-/single-file-1.0.6.tgz#2b16734b20999e69e53cfa3cda47fafe307d49e1"
+  integrity sha512-oaTqMEhHZ8nR1KgjPq46/j08xc+S+LV4Xx5Suc/4l2FpzH3ytqRyX/9xpv+K46T3A0AHxLWOFBcDexoo+b1LGw==
   dependencies:
     file-url "3.0.0"
     puppeteer-core "19.7.5"
@@ -7129,12 +7129,12 @@ safe-regex@^2.1.1:
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-save-html-screenshot@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.npmjs.org/save-html-screenshot/-/save-html-screenshot-0.0.13.tgz#29a97ea7a4aa341537668d44145b12aace018fee"
-  integrity sha512-71Ikr7IzO1+Y4Sz0NH1bgIPOV3yp98YnzC9+AyQKbub5S8dDMKgTSsn2aynY7hrrRtKRcI06dMCWp/++vVlx4A==
+save-html-screenshot@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.npmjs.org/save-html-screenshot/-/save-html-screenshot-0.0.15.tgz#3e6b1a9219f5414e34fc21d5f8625a65149f64ae"
+  integrity sha512-h8yW7gNxxUw4GHWdlev8MkFZRGb8XGUeOxEGsCgr9waMnXdzyLobelV7P4GocHY/1/b8NXkJnnFaoaKbOrtZuQ==
   dependencies:
-    "@pawanpaudel93/single-file" "^1.0.5"
+    "@pawanpaudel93/single-file" "^1.0.6"
     find-chrome-bin "^1.0.5"
     promisify-child-process "^4.1.1"
     puppeteer-core "19.7.5"
