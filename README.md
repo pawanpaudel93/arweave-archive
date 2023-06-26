@@ -52,18 +52,21 @@ Here's an example of how you can set the browserOptions:
 
 ```ts
 const options = {
-  browserHeadless: true,
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
-  browserHeight: 1080,
-  browserWidth: 1920,
-  browserlessOptions: {
-    apiKey: 'your-api-key',
-    blockAds: true,
-    stealth: true,
-    userDataDir: 'your-user-data-dir',
-    keepalive: 60000,
-    ignoreDefaultArgs: '--disable-extensions',
-    timeout: 60000
+  gatewayUrl: 'https://ar-io.net',
+  browserOptions: {
+    browserHeadless: true,
+    userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
+    browserHeight: 1080,
+    browserWidth: 1920,
+    browserlessOptions: {
+      apiKey: 'your-api-key',
+      blockAds: true,
+      stealth: true,
+      userDataDir: 'your-user-data-dir',
+      keepalive: 60000,
+      ignoreDefaultArgs: '--disable-extensions',
+      timeout: 60000
+    }
   }
 }
 
